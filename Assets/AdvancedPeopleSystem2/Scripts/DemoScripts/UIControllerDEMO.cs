@@ -317,6 +317,7 @@ public class UIControllerDEMO : MonoBehaviour
     {
         var saves = CharacterCustomization.GetSavedCharacterDatas();
         CharacterCustomization.ApplySavedCharacterData(saves[index]);
+        Debug.Log(saves[index].ToString());
     }
     public void EmotionsChange_Event(int index)
     {

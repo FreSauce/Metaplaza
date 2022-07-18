@@ -17,6 +17,7 @@ namespace AdvancedPeopleSystem
     [AddComponentMenu("Advanced People Pack/Character Customizable", -1)]
     public class CharacterCustomization : MonoBehaviour
     {
+        
         [SerializeField] public bool isSettingsExpanded = false;
 
         public CharacterSettings  selectedsettings;
@@ -1200,9 +1201,11 @@ namespace AdvancedPeopleSystem
         public void LoadCharacterFromFile(string path)
         {
             if (File.Exists(path))
+            if (File.Exists(path))
             {
                 var ext = Path.GetExtension(path);
                 var data = File.ReadAllText(path);
+                Debug.Log(data);
                 
                 if(data.Length > 0)
                 {
@@ -1340,6 +1343,9 @@ namespace AdvancedPeopleSystem
             if (data.Length > 0)
             {
                 File.WriteAllText(savepath, data, System.Text.Encoding.UTF8);
+
+                CharacterRequests.SaveCharacter(data);
+
                 Debug.Log(string.Format("Character data saved to ({0})", savepath));
             }
         }
