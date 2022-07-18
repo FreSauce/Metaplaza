@@ -1344,7 +1344,7 @@ namespace AdvancedPeopleSystem
             {
                 File.WriteAllText(savepath, data, System.Text.Encoding.UTF8);
 
-                CharacterRequests.SaveCharacter(data);
+                StartCoroutine(CharacterRequests.SaveCharacter(data));
 
                 Debug.Log(string.Format("Character data saved to ({0})", savepath));
             }

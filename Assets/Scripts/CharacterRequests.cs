@@ -6,23 +6,21 @@ using UnityEngine.UI;
 
 public class CharacterRequests : MonoBehaviour
 {
-    [SerializeField] private static string saveEndpoint= "https://ancient-retreat-18243.herokuapp.com/api/users/login";
+    [SerializeField] private static string saveEndpoint= "https://ancient-retreat-18243.herokuapp.com/api/users/sendCharacterData";
     [SerializeField] private static string loadEndpoint = "https://ancient-retreat-18243.herokuapp.com/api/users/login";
     public static IEnumerator SaveCharacter(string data)
     {
-        Debug.Log(data);
 
         if (data.Length <= 0) { yield break; }
 
         WWWForm form = new WWWForm();
 
-        form.AddField("jwt", PlayerPrefs.GetString("jwt"));
+        form.AddField("jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZDVhMDcwNjEyMTdlZTMwYTJkNzM1ZSIsImlhdCI6MTY1ODE2NzQwOCwiZXhwIjoxNjY1OTQzNDA4fQ.PPhtoSRRxqnVHvhPUykMMuxjLAxDIWkhJ10GF8jgIvk");
         form.AddField("data", data);
 
         UnityWebRequest request = UnityWebRequest.Post(saveEndpoint, form);
 
         var handler = request.SendWebRequest();
-        Debug.Log(request.url);
 
         float startTime = 0.0f;
         while (!handler.isDone)
@@ -37,7 +35,7 @@ public class CharacterRequests : MonoBehaviour
             yield return null;
         }
 
-        Debug.Log(request.result);
+        Debug.Log(request.result.ToString());
 
         if (request.result == UnityWebRequest.Result.Success)
         {
