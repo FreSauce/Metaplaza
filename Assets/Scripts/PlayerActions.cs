@@ -52,6 +52,7 @@ public class PlayerActions : MonoBehaviour
     public void OnVoiceToggle()
     {
         _voiceNetwork.PrimaryRecorder.TransmitEnabled = !_voiceNetwork.PrimaryRecorder.TransmitEnabled;
+        Debug.Log(_voiceNetwork.PrimaryRecorder.TransmitEnabled);
     }
 
 
