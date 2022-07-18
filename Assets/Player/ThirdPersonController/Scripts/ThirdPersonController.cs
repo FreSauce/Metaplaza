@@ -126,7 +126,6 @@ namespace StarterAssets
 #endif
             }
         }
-        PhotonVoiceNetwork _voiceNetwork;
 
         private void Awake()
         {
@@ -135,8 +134,7 @@ namespace StarterAssets
             {
                 _mainCamera = GameObject.FindGameObjectWithTag("MainCamera").transform;
             }
-            _voiceNetwork = PhotonVoiceNetwork.Instance;
-            _voiceNetwork.PrimaryRecorder.TransmitEnabled = false;
+            
 
         }
 

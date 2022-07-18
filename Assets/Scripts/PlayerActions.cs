@@ -1,4 +1,5 @@
 using TMPro;
+using Photon.Voice.PUN;
 using UnityEngine;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
@@ -15,9 +16,14 @@ public class PlayerActions : MonoBehaviour
     [SerializeField]
     private LayerMask UseLayers;
 
+    private PhotonVoiceNetwork _voiceNetwork;
+
     private void Awake()
     {
         Camera = GameObject.FindGameObjectWithTag("MainCamera").transform;
+
+        _voiceNetwork = PhotonVoiceNetwork.Instance;
+        _voiceNetwork.PrimaryRecorder.TransmitEnabled = false;
     }
 
     public void OnUse()
@@ -41,6 +47,11 @@ public class PlayerActions : MonoBehaviour
     public void OnBuy()
     {
         Debug.Log("Buying item");
+    }
+
+    public void OnVoiceToggle()
+    {
+        _voiceNetwork.PrimaryRecorder.TransmitEnabled = !_voiceNetwork.PrimaryRecorder.TransmitEnabled;
     }
 
 
