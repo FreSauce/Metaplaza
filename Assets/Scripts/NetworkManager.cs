@@ -58,7 +58,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log("Joined room successfully");
-        PhotonNetwork.NickName = PlayerPrefs.GetString("username");
+        PhotonNetwork.NickName = PlayerPrefs.GetString("userId");
+        
         PhotonNetwork.Instantiate(playerPrefab.name, spawnPoint, Quaternion.identity);
     }
 }

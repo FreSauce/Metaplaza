@@ -69,7 +69,7 @@ namespace AdvancedPeopleSystem
             {
                 cc.SetBlendshapeValue(blendshape.type, blendshape.value);
             }
-            cc.ApplyPrefab();
+            //cc.ApplyPrefab();
 
         }
         #region Serializer

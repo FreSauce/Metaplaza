@@ -1978,6 +1978,8 @@ MonoBehaviour:
   CameraAngleOverride: 0
   LockCameraPosition: 0
   animator: {fileID: 5626770579014655680}
+  male: {fileID: 9000000, guid: 1b8f3f34252d9ee44823ab05504b31a8, type: 3}
+  animatorObject: {fileID: 0}
   characterRequests: {fileID: 7584405781670036255}
 --- !u!114 &9177734775471863024
 MonoBehaviour:

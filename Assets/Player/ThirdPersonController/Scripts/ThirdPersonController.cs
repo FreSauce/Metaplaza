@@ -110,7 +110,7 @@ namespace StarterAssets
         private CharacterController _controller;
         private StarterAssetsInputs _input;
         [SerializeField] private Animator animator;
-        [SerializeField] private GameObject animatorObject;
+        [SerializeField] private Avatar male;
         private Transform _mainCamera;
         [SerializeField] private CharacterRequests characterRequests;
 
@@ -144,10 +144,11 @@ namespace StarterAssets
         [PunRPC]
         public IEnumerator ChangeVisuals()
         {
+            string userId = photonView.Owner.NickName;
+            Debug.Log(userId);
             characterRequests.InitializeCharacter();
-            animator.enabled = false;
-            yield return new WaitForSeconds(10);
-            animator.enabled = true;
+            yield return new WaitForSeconds(2f);
+            animator.Rebind();
         }
 
 
