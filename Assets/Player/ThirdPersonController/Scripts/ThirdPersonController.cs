@@ -141,7 +141,6 @@ namespace StarterAssets
 
         }
 
-        [PunRPC]
         public IEnumerator ChangeVisuals()
         {
             string userId = photonView.Owner.NickName;
@@ -167,11 +166,8 @@ namespace StarterAssets
 #endif
 
             AssignAnimationIDs();
-            if (photonView.IsMine)
-            {
-                photonView.RPC("ChangeVisuals", RpcTarget.AllBuffered);
-            }
 
+            Debug.Log(PhotonNetwork.PlayerList.ToString());
 
             // reset our timeouts on start
             _jumpTimeoutDelta = JumpTimeout;
