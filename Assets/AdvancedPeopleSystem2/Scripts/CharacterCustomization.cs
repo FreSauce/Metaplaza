@@ -1234,6 +1234,18 @@ namespace AdvancedPeopleSystem
                 }
             }
         }
+
+        public void ApplyCharacterData(string characterData)
+        {
+            var format = CharacterCustomizationSetup.CharacterFileSaveFormat.Json;
+            var setup = CharacterCustomizationSetup.Deserialize(characterData, format);
+            if (setup != null)
+            {
+                SetCharacterSetup(setup);
+                Debug.Log(string.Format("Loaded character"));
+            }
+        }
+
         /// <summary>
         /// Gets a list of character saves from the directory
         /// </summary>
@@ -1344,7 +1356,6 @@ namespace AdvancedPeopleSystem
             {
                 File.WriteAllText(savepath, data, System.Text.Encoding.UTF8);
 
-                StartCoroutine(CharacterRequests.SaveCharacter(data));
 
                 Debug.Log(string.Format("Character data saved to ({0})", savepath));
             }

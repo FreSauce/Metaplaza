@@ -401,6 +401,29 @@ public class UIControllerDEMO : MonoBehaviour
 
         playbutton_text.text = (walk_active) ? "STOP" : "PLAY";
     }
+
+    public void ApplyCharacter()
+    {
+        var format = CharacterCustomizationSetup.CharacterFileSaveFormat.Json;
+        var data = CharacterCustomization.GetSetup().Serialize(format);
+        StartCoroutine(CharacterRequests.SaveCharacter(data, (response) => {
+            if(response!= null)
+            {
+                if(response.code == 0)
+                {
+                    StopAllCoroutines();
+                    SceneManager.LoadScene(2);
+                }
+            }
+            else
+            {
+                Debug.Log("Error connecting...");
+                PlayerPrefs.SetString("token", "");
+            }
+        }));
+    }
+
+
     #endregion
 
     bool canvasVisible = true;

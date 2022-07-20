@@ -3,6 +3,7 @@
 using UnityEngine.InputSystem;
 using Photon.Pun;
 using Photon.Voice.PUN;
+using System.Collections;
 using Cinemachine;
 #endif
 
@@ -106,10 +107,12 @@ namespace StarterAssets
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
         private PlayerInput _playerInput;
 #endif
-        private Animator _animator;
         private CharacterController _controller;
         private StarterAssetsInputs _input;
+        [SerializeField] private Animator animator;
+        [SerializeField] private GameObject animatorObject;
         private Transform _mainCamera;
+        [SerializeField] private CharacterRequests characterRequests;
 
         private const float _threshold = 0.01f;
 
@@ -138,11 +141,22 @@ namespace StarterAssets
 
         }
 
+        [PunRPC]
+        public IEnumerator ChangeVisuals()
+        {
+            characterRequests.InitializeCharacter();
+            animator.enabled = false;
+            yield return new WaitForSeconds(10);
+            animator.enabled = true;
+        }
+
+
+
         private void Start()
         {
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
-            
-            _hasAnimator = TryGetComponent(out _animator);
+
+            _hasAnimator = true;
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
@@ -152,6 +166,11 @@ namespace StarterAssets
 #endif
 
             AssignAnimationIDs();
+            if (photonView.IsMine)
+            {
+                photonView.RPC("ChangeVisuals", RpcTarget.AllBuffered);
+            }
+
 
             // reset our timeouts on start
             _jumpTimeoutDelta = JumpTimeout;
@@ -160,7 +179,7 @@ namespace StarterAssets
 
         private void Update()
         {
-            _hasAnimator = TryGetComponent(out _animator);
+            _hasAnimator = true;
             
             if(photonView.IsMine)
             {
@@ -199,7 +218,7 @@ namespace StarterAssets
             // update animator if using character
             if (_hasAnimator)
             {
-                _animator.SetBool(_animIDGrounded, Grounded);
+                animator.SetBool(_animIDGrounded, Grounded);
             }
         }
 
@@ -290,8 +309,8 @@ namespace StarterAssets
             // update animator if using character
             if (_hasAnimator)
             {
-                _animator.SetFloat(_animIDSpeed, _animationBlend);
-                _animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
+                animator.SetFloat(_animIDSpeed, _animationBlend);
+                animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
             }
         }
 
@@ -305,8 +324,8 @@ namespace StarterAssets
                 // update animator if using character
                 if (_hasAnimator)
                 {
-                    _animator.SetBool(_animIDJump, false);
-                    _animator.SetBool(_animIDFreeFall, false);
+                    animator.SetBool(_animIDJump, false);
+                    animator.SetBool(_animIDFreeFall, false);
                 }
 
                 // stop our velocity dropping infinitely when grounded
@@ -324,7 +343,7 @@ namespace StarterAssets
                     // update animator if using character
                     if (_hasAnimator)
                     {
-                        _animator.SetBool(_animIDJump, true);
+                        animator.SetBool(_animIDJump, true);
                     }
                 }
 
@@ -349,7 +368,7 @@ namespace StarterAssets
                     // update animator if using character
                     if (_hasAnimator)
                     {
-                        _animator.SetBool(_animIDFreeFall, true);
+                        animator.SetBool(_animIDFreeFall, true);
                     }
                 }
 

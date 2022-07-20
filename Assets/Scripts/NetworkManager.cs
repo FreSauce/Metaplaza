@@ -47,13 +47,14 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         Debug.Log("Connected to server");
-        PhotonNetwork.JoinRandomOrCreateRoom();
+        PhotonNetwork.JoinOrCreateRoom("urmom", null, null);
     }
 
     public override void OnCreatedRoom()
     {
         Debug.Log("Created Room: " + PhotonNetwork.CurrentRoom.Name);
     }
+
     public override void OnJoinedRoom()
     {
         Debug.Log("Joined room successfully");
