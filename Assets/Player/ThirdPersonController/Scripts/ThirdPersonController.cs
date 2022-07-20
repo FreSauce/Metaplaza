@@ -146,7 +146,7 @@ namespace StarterAssets
         {
             string userId = photonView.Owner.NickName;
             Debug.Log(userId);
-            characterRequests.InitializeCharacter();
+            characterRequests.InitializeCharacter(userId);
             yield return new WaitForSeconds(2f);
             animator.Rebind();
         }

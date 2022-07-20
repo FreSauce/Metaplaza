@@ -7,14 +7,14 @@ using UnityEngine.SceneManagement;
 public class CharacterRequests : MonoBehaviour
 {
     [SerializeField] private static string saveEndpoint= "https://ancient-retreat-18243.herokuapp.com/api/users/sendCharacterData";
-    [SerializeField] private static string loadEndpoint = "https://ancient-retreat-18243.herokuapp.com/api/users/getCharacterData";
+    [SerializeField] private static string loadEndpoint = "https://ancient-retreat-18243.herokuapp.com/api/users/getUserData/";
     AdvancedPeopleSystem.CharacterCustomization character;
 
     private void Start()
     {
         character = GetComponent<AdvancedPeopleSystem.CharacterCustomization>();
         Debug.Log(character);
-        StartCoroutine(GetCharacter((response) =>
+        StartCoroutine(GetCharacter(PlayerPrefs.GetString("userId"), (response) =>
         {
             if(response != null)
             {
@@ -34,11 +34,11 @@ public class CharacterRequests : MonoBehaviour
     }
 
 
-    public void InitializeCharacter()
+    public void InitializeCharacter(string userId)
     {
         character = GetComponent<AdvancedPeopleSystem.CharacterCustomization>();
         Debug.Log(character);
-        StartCoroutine(GetCharacter((response) =>
+        StartCoroutine(GetCharacter(userId, (response) =>
         {
             Debug.Log(response.characterType);
             Debug.Log(PlayerPrefs.GetString("token"));
@@ -90,10 +90,9 @@ public class CharacterRequests : MonoBehaviour
         yield return null;
     }
 
-    public static IEnumerator GetCharacter(System.Action<GetResponse> Callback)
+    public static IEnumerator GetCharacter(string userId, System.Action<GetResponse> Callback)
     {
-
-        UnityWebRequest request = UnityWebRequest.Get(loadEndpoint);
+        UnityWebRequest request = UnityWebRequest.Get(loadEndpoint + userId);
         request.SetRequestHeader("authorization", "Bearer " + PlayerPrefs.GetString("token"));
         var handler = request.SendWebRequest();
         float startTime = 0.0f;
