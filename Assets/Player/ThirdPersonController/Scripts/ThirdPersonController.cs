@@ -142,13 +142,14 @@ namespace StarterAssets
         }
 
         [PunRPC]
-        public IEnumerator ChangeVisuals()
+        public void ChangeVisuals()
         {
-            string userId = photonView.Owner.NickName;
-            Debug.Log(userId);
-            characterRequests.InitializeCharacter(userId);
-            yield return new WaitForSeconds(2f);
-            animator.Rebind();
+            if (!photonView.IsMine)
+            {
+                string userId = photonView.Owner.NickName;
+                Debug.Log(userId);
+                characterRequests.InitializeCharacter(userId);
+            }
         }
 
 
@@ -167,8 +168,11 @@ namespace StarterAssets
 #endif
 
             AssignAnimationIDs();
-            photonView.RPC("ChangeVisuals", RpcTarget.AllBufferedViaServer);
-
+            if (photonView.IsMine)
+            {
+                photonView.RPC("ChangeVisuals", RpcTarget.AllBufferedViaServer);
+                ChangeVisuals();
+            }
             // reset our timeouts on start
             _jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;

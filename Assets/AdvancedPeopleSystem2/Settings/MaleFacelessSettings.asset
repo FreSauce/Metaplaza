@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c0b793a5334f714894f560b724e6945, type: 3}
   m_Name: MaleFacelessSettings
   m_EditorClassIdentifier: 
-  OriginalMesh: {fileID: 919132149155446097, guid: 82c956c5c3f35de428045f3bc82f74db,
-    type: 3}
+  OriginalMesh: {fileID: 919132149155446097, guid: 82c956c5c3f35de428045f3bc82f74db, type: 3}
   bodyMaterial: {fileID: 2100000, guid: 72b4350f26c57fe44b39907d978d92c5, type: 2}
   characterAnimationPresets:
   - name: Smile
@@ -1596,7 +1595,7 @@ MonoBehaviour:
     settings: {fileID: 11400000}
   - name: Female
     settings: {fileID: 11400000, guid: 843405cf5263c2a4b900d4d232dd00cd, type: 2}
-  Animator: {fileID: 9100000, guid: 73dfba487f63297498cf4b2ae53f6fb5, type: 2}
+  Animator: {fileID: 9100000, guid: 40db3173a05ae3242b1c182a09b0a183, type: 2}
   Avatar: {fileID: 9000000, guid: 82c956c5c3f35de428045f3bc82f74db, type: 3}
   generator: {fileID: 11400000, guid: 9d338fc758b43984b86fa986b9df3726, type: 2}
   DefaultSelectedElements:
@@ -1608,3 +1607,4 @@ MonoBehaviour:
     Shoes: -1
     Accessory: -1
     Item1: -1
+  DisableBlendshapeModifier: 0

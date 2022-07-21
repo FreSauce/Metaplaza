@@ -1479,7 +1479,7 @@ MonoBehaviour:
     settings: {fileID: 11400000, guid: e9e5494d13890db4e90f7bb6e6ec19c0, type: 2}
   - name: Female
     settings: {fileID: 11400000}
-  Animator: {fileID: 9100000, guid: 084d8be3777e8b94c81323dd5fc42d88, type: 2}
+  Animator: {fileID: 9100000, guid: 40db3173a05ae3242b1c182a09b0a183, type: 2}
   Avatar: {fileID: 9000000, guid: 9c09c78ed1209974db369788b8305a24, type: 3}
   generator: {fileID: 11400000, guid: 31227e7c64c90154f96bd388976d65ff, type: 2}
   DefaultSelectedElements:
@@ -1491,3 +1491,4 @@ MonoBehaviour:
     Shoes: -1
     Accessory: -1
     Item1: -1
+  DisableBlendshapeModifier: 0
