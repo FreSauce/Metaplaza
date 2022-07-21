@@ -13,13 +13,13 @@ public class CharacterRequests : MonoBehaviour
     private void Start()
     {
         character = GetComponent<AdvancedPeopleSystem.CharacterCustomization>();
-        Debug.Log(character);
+        //Debug.Log(character);
         StartCoroutine(GetCharacter(PlayerPrefs.GetString("userId"), (response) =>
         {
             if(response != null)
             {
-            Debug.Log(response.characterType);
-            Debug.Log(PlayerPrefs.GetString("token"));
+            //Debug.Log(response.characterType);
+            //Debug.Log(PlayerPrefs.GetString("token"));
             if (response.characterType == "Male")
             {
                 character.SwitchCharacterSettings(0);
@@ -37,11 +37,11 @@ public class CharacterRequests : MonoBehaviour
     public void InitializeCharacter(string userId)
     {
         character = GetComponent<AdvancedPeopleSystem.CharacterCustomization>();
-        Debug.Log(character);
+        //Debug.Log(character);
         StartCoroutine(GetCharacter(userId, (response) =>
         {
-            Debug.Log(response.characterType);
-            Debug.Log(PlayerPrefs.GetString("token"));
+            //Debug.Log(response.characterType);
+            //Debug.Log(PlayerPrefs.GetString("token"));
             if (response.characterType == "Male")
             {
                 character.SwitchCharacterSettings(0);
@@ -57,7 +57,7 @@ public class CharacterRequests : MonoBehaviour
     public static IEnumerator SaveCharacter(string data, System.Action<PostResponse> Callback)
     {
         if (data.Length <= 0) { yield break; }
-        Debug.Log(data);
+        //Debug.Log(data);
         WWWForm form = new WWWForm();
         form.AddField("character_data", data);
         UnityWebRequest request = UnityWebRequest.Post(saveEndpoint, form);
@@ -73,7 +73,7 @@ public class CharacterRequests : MonoBehaviour
             }
             yield return null;
         }
-        Debug.Log(request.result.ToString());
+        //Debug.Log(request.result.ToString());
 
         if (request.result == UnityWebRequest.Result.Success)
         {
@@ -106,11 +106,11 @@ public class CharacterRequests : MonoBehaviour
             yield return null;
         }
 
-        Debug.Log(request.result.ToString());
+        //Debug.Log(request.result.ToString());
 
         if (request.result == UnityWebRequest.Result.Success)
         {
-            Debug.Log(request.downloadHandler.text);
+            //Debug.Log(request.downloadHandler.text);
             GetResponse response = JsonUtility.FromJson<GetResponse>(request.downloadHandler.text);
             Callback(response);
         }
