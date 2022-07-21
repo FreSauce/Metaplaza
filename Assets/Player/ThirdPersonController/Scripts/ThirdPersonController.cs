@@ -144,12 +144,9 @@ namespace StarterAssets
         [PunRPC]
         public void ChangeVisuals()
         {
-            if (!photonView.IsMine)
-            {
-                string userId = photonView.Owner.NickName;
-                Debug.Log(userId);
-                characterRequests.InitializeCharacter(userId);
-            }
+            string userId = photonView.Owner.NickName;
+            Debug.Log(userId);
+            characterRequests.InitializeCharacter(userId);
         }
 
 
@@ -171,7 +168,6 @@ namespace StarterAssets
             if (photonView.IsMine)
             {
                 photonView.RPC("ChangeVisuals", RpcTarget.AllBufferedViaServer);
-                ChangeVisuals();
             }
             // reset our timeouts on start
             _jumpTimeoutDelta = JumpTimeout;
