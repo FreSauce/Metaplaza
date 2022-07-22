@@ -1,11 +1,12 @@
 using TMPro;
 using Photon.Voice.PUN;
 using UnityEngine;
+using Photon.Pun;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 #endif
 
-public class PlayerActions : MonoBehaviour
+public class PlayerActions : MonoBehaviourPunCallbacks
 {
     [SerializeField]
     private TextMeshPro UseText;
@@ -58,34 +59,37 @@ public class PlayerActions : MonoBehaviour
 
     public void Update()
     {
-        if (Physics.Raycast(Camera.position, Camera.forward, out RaycastHit hit, MaxUseDistance, UseLayers))
+        if (photonView.IsMine)
         {
-            if(hit.collider.TryGetComponent<Door>(out Door door))
+            if (Physics.Raycast(Camera.position, Camera.forward, out RaycastHit hit, MaxUseDistance, UseLayers))
             {
-                if (door.isOpen)
+                if (hit.collider.TryGetComponent<Door>(out Door door))
                 {
-                    UseText.SetText("Close \"E\"");
+                    if (door.isOpen)
+                    {
+                        UseText.SetText("Close \"E\"");
+                    }
+                    else
+                    {
+                        UseText.SetText("Open \"E\"");
+                    }
+                    UseText.gameObject.SetActive(true);
+                    UseText.transform.position = hit.point - (hit.point - Camera.position).normalized * 0.1f;
+                    UseText.transform.rotation = Quaternion.LookRotation((hit.point - Camera.position).normalized);
                 }
-                else
+                else if (hit.collider.TryGetComponent<ShoppingItem>(out ShoppingItem shoppingItem))
                 {
-                    UseText.SetText("Open \"E\"");
+                    UseText.SetText("Select \"B\" to buy");
+                    UseText.gameObject.SetActive(true);
+                    UseText.transform.position = hit.point - (hit.point - Camera.position).normalized * 0.2f;
+                    UseText.transform.rotation = Quaternion.LookRotation((hit.point - Camera.position).normalized);
                 }
-                UseText.gameObject.SetActive(true);
-                UseText.transform.position = hit.point - (hit.point - Camera.position).normalized * 0.1f;
-                UseText.transform.rotation = Quaternion.LookRotation((hit.point - Camera.position).normalized);
+
             }
-            else if(hit.collider.TryGetComponent<ShoppingItem>(out ShoppingItem shoppingItem))
+            else
             {
-                UseText.SetText("Select \"B\" to buy");
-                UseText.gameObject.SetActive(true);
-                UseText.transform.position = hit.point - (hit.point - Camera.position).normalized * 0.2f;
-                UseText.transform.rotation = Quaternion.LookRotation((hit.point - Camera.position).normalized);
+                UseText.gameObject.SetActive(false);
             }
-            
-        }
-        else
-        {
-            UseText.gameObject.SetActive(false);
         }
     }
 }
