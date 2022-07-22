@@ -165,10 +165,10 @@ namespace StarterAssets
 #endif
 
             AssignAnimationIDs();
-            if (photonView.IsMine)
-            {
+            //if (photonView.IsMine)
+            //{
                 photonView.RPC("ChangeVisuals", RpcTarget.AllViaServer);
-            }
+            //}
             // reset our timeouts on start
             _jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;

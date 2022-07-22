@@ -33,6 +33,14 @@ public class CharacterRequests : MonoBehaviour
         }));
     }
 
+    private void Update()
+    {
+        if(!PlayerPrefs.HasKey("token"))
+        {
+            Debug.Log("Token: " + PlayerPrefs.GetString("token"));
+            SceneManager.LoadScene(0);
+        }
+    }
 
     public void InitializeCharacter(string userId)
     {
@@ -83,7 +91,7 @@ public class CharacterRequests : MonoBehaviour
         else
         {
             Debug.Log("Error connecting to the server...");
-            PlayerPrefs.SetString("token", "");
+            PlayerPrefs.DeleteKey("token");
             Callback(null);
         }
         request.Dispose();
@@ -116,8 +124,8 @@ public class CharacterRequests : MonoBehaviour
         }
         else
         {
-            Debug.Log("Error connecting to the server...");
-            //PlayerPrefs.SetString("token", "");
+            Debug.Log("Error connecting to the server: " + request.result);
+            PlayerPrefs.DeleteKey("token");
             Callback(null);
         }
         request.Dispose();

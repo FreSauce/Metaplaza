@@ -38,8 +38,9 @@ public class Login : MonoBehaviour
 
     private void Update()
     {
-        if (PlayerPrefs.GetString("token", "") != "")
+        if (PlayerPrefs.HasKey("token"))
         {
+            Debug.Log("Token: " + PlayerPrefs.GetString("token"));
             SceneManager.LoadScene(1);
         }
     }
@@ -50,7 +51,7 @@ public class Login : MonoBehaviour
         string password = passwordInputField.text;
         Hide(SignupCanvas);
         Show(loginCanvas);
-        Debug.Log(password);
+        //Debug.Log(password);
         if (username.Length > 0 && password.Length > 0)
         {
             alertText.text = "Signing in...";
@@ -77,15 +78,12 @@ public class Login : MonoBehaviour
 
     private IEnumerator TryLogin(string username,string password)
     {
-
-
         WWWForm form = new WWWForm();
         form.AddField("email", username);
         form.AddField("password", password);
         if (username.Length <= 0 && password.Length <= 0) { yield break; }
         UnityWebRequest request = UnityWebRequest.Post(loginEndpoint, form);
         var handler = request.SendWebRequest();
-
         float startTime = 0.0f;
         while (!handler.isDone)
         {
@@ -98,7 +96,6 @@ public class Login : MonoBehaviour
 
             yield return null;
         }
-
         if (request.result == UnityWebRequest.Result.Success)
         {
             // Debug.Log(request.downloadHandler.text);
@@ -110,14 +107,13 @@ public class Login : MonoBehaviour
         else
         {
             alertText.text = "Error connecting to the server...";
-            PlayerPrefs.SetString("token", null);
+            PlayerPrefs.DeleteKey("token");
+            PlayerPrefs.DeleteKey("userId");
             ActivateButtons(true);
         }
-
-
+        request.Dispose();
         yield return null;
     }
-
     private IEnumerator TryCreate(string email,string password, string username,string confirmPassword)
     {
         WWWForm form = new WWWForm();
@@ -127,18 +123,14 @@ public class Login : MonoBehaviour
         form.AddField("confirmPassword", confirmPassword);
         UnityWebRequest request = UnityWebRequest.Post(signupEndpoint, form);
         var handler = request.SendWebRequest();
-
         float startTime = 0.0f;
-        
         while (!handler.isDone)
         {
             startTime += Time.deltaTime;
-
             if (startTime > 10.0f)
             {
                 break;
             }
-
             yield return null;
         }
         Debug.Log(request.result);
@@ -146,16 +138,18 @@ public class Login : MonoBehaviour
         {
             //Debug.Log(request.downloadHandler.text);
             LoginResponse response = JsonUtility.FromJson<LoginResponse>(request.downloadHandler.text);
-            Debug.Log(response.token);
-            PlayerPrefs.SetString("token", response.token);
+            //Debug.Log(response.token);
+            PlayerPrefs.SetString("token", response.token); 
+            PlayerPrefs.SetString("userId", response.user._id);
         }
         else
         {
             alertText.text = "Error connecting to the server...";
+            PlayerPrefs.DeleteKey("token");
+            PlayerPrefs.DeleteKey("userId");
         }
-
+        request.Dispose();
         ActivateButtons(true);
-
         yield return null;
     }
 
