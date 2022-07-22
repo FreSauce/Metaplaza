@@ -47,7 +47,15 @@ public class PlayerActions : MonoBehaviourPunCallbacks
 
     public void OnBuy()
     {
-        Debug.Log("Buying item");
+        Debug.Log("Buyying");
+        if (Physics.Raycast(Camera.position, Camera.forward, out RaycastHit hit, MaxUseDistance, UseLayers))
+        {
+            if (hit.collider.TryGetComponent<ShoppingItem>(out ShoppingItem shoppingItem))
+            {
+                Debug.Log("Buyying product");
+                shoppingItem.print();
+            }
+        }
     }
 
     public void OnVoiceToggle()
