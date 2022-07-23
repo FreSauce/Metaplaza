@@ -22,6 +22,8 @@ public class PlayerActions : MonoBehaviourPunCallbacks
 
     public Canvas menuCanvas;
 
+    public ShoppingMenu shoppingMenu;
+
     private void Awake()
     {
         Camera = GameObject.FindGameObjectWithTag("MainCamera").transform;
@@ -30,6 +32,8 @@ public class PlayerActions : MonoBehaviourPunCallbacks
         _voiceNetwork.PrimaryRecorder.TransmitEnabled = false;
 
         menuCanvas = GameObject.FindGameObjectWithTag("MenuCanvas").GetComponent<Canvas>();
+
+        shoppingMenu = menuCanvas.GetComponent<ShoppingMenu>();
     }
 
     public void OnUse()
@@ -56,8 +60,18 @@ public class PlayerActions : MonoBehaviourPunCallbacks
         {
             if (hit.collider.TryGetComponent<ShoppingItem>(out ShoppingItem shoppingItem))
             {
-                Debug.Log("Buyying");
-                menuCanvas.GetComponent<ShoppingMenu>().OpenMenu(shoppingItem.Name);
+                Debug.Log(PauseMenu.GameIsPaused);
+                if (!PauseMenu.GameIsPaused)
+                {
+                    if (!ShoppingMenu.MenuOpen)
+                    {
+                        shoppingMenu.OpenMenu();
+                    }
+                    else
+                    {
+                        shoppingMenu.CloseMenu();
+                    }
+                }
             }
         }
     }

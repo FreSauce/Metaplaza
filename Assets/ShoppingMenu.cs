@@ -14,7 +14,7 @@ public class ShoppingMenu : MonoBehaviour
     }
 
 
-    public void OpenMenu(string name)
+    public void OpenMenu()
     {
         shoppingMenu.SetActive(true);
         MenuOpen = true;
