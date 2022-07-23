@@ -23,12 +23,13 @@ namespace StarterAssets
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 		public void OnMove(InputValue value)
 		{
-			MoveInput(value.Get<Vector2>());
+            if(!PauseMenu.GameIsPaused)
+				MoveInput(value.Get<Vector2>());
 		}
 
 		public void OnLook(InputValue value)
 		{
-			if(cursorInputForLook)
+			if(cursorInputForLook&&!PauseMenu.GameIsPaused)
 			{
 				LookInput(value.Get<Vector2>());
 			}
@@ -36,12 +37,14 @@ namespace StarterAssets
 
 		public void OnJump(InputValue value)
 		{
-			JumpInput(value.isPressed);
+			if (!PauseMenu.GameIsPaused)
+				JumpInput(value.isPressed);
 		}
 
 		public void OnSprint(InputValue value)
 		{
-			SprintInput(value.isPressed);
+			if (!PauseMenu.GameIsPaused)
+				SprintInput(value.isPressed);
 		}
 #endif
 

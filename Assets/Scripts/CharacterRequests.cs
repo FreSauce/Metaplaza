@@ -13,22 +13,23 @@ public class CharacterRequests : MonoBehaviour
     private void Start()
     {
         character = GetComponent<AdvancedPeopleSystem.CharacterCustomization>();
-        //Debug.Log(character);
         StartCoroutine(GetCharacter(PlayerPrefs.GetString("userId"), (response) =>
         {
             if(response != null)
             {
-            //Debug.Log(response.characterType);
-            //Debug.Log(PlayerPrefs.GetString("token"));
-            if (response.characterType == "Male")
-            {
-                character.SwitchCharacterSettings(0);
-            }
-            else if(response.characterType == "Female")
-            {
-                character.SwitchCharacterSettings(1);
-            }
-            character.ApplyCharacterData(response.characterData);
+
+                if (response.characterType == "Male")
+                {
+                    character.SwitchCharacterSettings(0);
+                }
+                else if(response.characterType == "Female")
+                {
+                    character.SwitchCharacterSettings(1);
+                }
+                if(response.characterData != "")
+                {
+                    character.ApplyCharacterData(response.characterData);
+                }
             }
         }));
     }
@@ -37,7 +38,7 @@ public class CharacterRequests : MonoBehaviour
     {
         if(!PlayerPrefs.HasKey("token"))
         {
-            Debug.Log("Token: " + PlayerPrefs.GetString("token"));
+            Debug.Log("Going to Scene 1: " + PlayerPrefs.GetString("token"));
             SceneManager.LoadScene(0);
         }
     }
