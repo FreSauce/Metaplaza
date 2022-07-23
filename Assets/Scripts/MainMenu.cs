@@ -11,6 +11,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] public TextMeshProUGUI PlayButton;
     [SerializeField] public TextMeshProUGUI CharGen;
     [SerializeField] public TextMeshProUGUI Logout;
+
     public GameObject loginCanvas;
     public GameObject SignupCanvas;
 

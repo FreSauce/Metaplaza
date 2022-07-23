@@ -406,7 +406,7 @@ public class UIControllerDEMO : MonoBehaviour
     {
         var format = CharacterCustomizationSetup.CharacterFileSaveFormat.Json;
         var data = CharacterCustomization.GetSetup().Serialize(format);
-        StartCoroutine(CharacterRequests.SaveCharacter(data, (response) => {
+        CharacterRequests.SaveCharacter(data, (response) => {
             if(response!= null)
             {
                 if(response.code == 0)
@@ -420,7 +420,7 @@ public class UIControllerDEMO : MonoBehaviour
                 Debug.Log("Error connecting...");
                 PlayerPrefs.SetString("token", "");
             }
-        }));
+        });
     }
 
 
