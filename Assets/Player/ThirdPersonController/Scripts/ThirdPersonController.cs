@@ -169,8 +169,7 @@ namespace StarterAssets
 			Debug.LogError( "Starter Assets package is missing dependencies. Please use Tools/Starter Assets/Reinstall Dependencies to fix it");
 #endif
             AssignAnimationIDs();
-            //photonView.RPC("ChangeVisuals", RpcTarget.AllViaServer);
-            ChangeVisuals();
+            photonView.RPC("ChangeVisuals", RpcTarget.AllViaServer);
 
             _usernameText.text = photonView.Owner.NickName.Split("||")[1];
             _jumpTimeoutDelta = JumpTimeout;

@@ -7,6 +7,7 @@ TagManager:
   - CinemachineTarget
   - Escalator
   - MenuCanvas
+  - InfoText
   layers:
   - Default
   - TransparentFX

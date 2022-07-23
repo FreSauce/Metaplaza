@@ -12,6 +12,10 @@ public class PlayerActions : MonoBehaviourPunCallbacks
     [SerializeField]
     private TextMeshPro UseText;
     [SerializeField]
+    private TextMeshProUGUI InfoText;
+    [SerializeField]
+    private GameObject InfoTextHolder;
+    [SerializeField]
     private Transform Camera;
     [SerializeField]
     private float MaxUseDistance = 5f;
@@ -22,6 +26,8 @@ public class PlayerActions : MonoBehaviourPunCallbacks
 
     public Canvas menuCanvas;
 
+    public ShoppingMenu shoppingMenu;
+
     private void Awake()
     {
         Camera = GameObject.FindGameObjectWithTag("MainCamera").transform;
@@ -30,6 +36,10 @@ public class PlayerActions : MonoBehaviourPunCallbacks
         _voiceNetwork.PrimaryRecorder.TransmitEnabled = false;
 
         menuCanvas = GameObject.FindGameObjectWithTag("MenuCanvas").GetComponent<Canvas>();
+
+        shoppingMenu = menuCanvas.GetComponent<ShoppingMenu>();
+
+        InfoText = menuCanvas.GetComponentInChildren<TextMeshProUGUI>();
     }
 
     public void OnUse()
@@ -56,8 +66,18 @@ public class PlayerActions : MonoBehaviourPunCallbacks
         {
             if (hit.collider.TryGetComponent<ShoppingItem>(out ShoppingItem shoppingItem))
             {
-                Debug.Log("Buyying");
-                menuCanvas.GetComponent<ShoppingMenu>().OpenMenu(shoppingItem.Name);
+                Debug.Log(PauseMenu.GameIsPaused);
+                if (!PauseMenu.GameIsPaused)
+                {
+                    if (!ShoppingMenu.MenuOpen)
+                    {
+                        shoppingMenu.OpenMenu();
+                    }
+                    else
+                    {
+                        shoppingMenu.CloseMenu();
+                    }
+                }
             }
         }
     }
@@ -75,32 +95,36 @@ public class PlayerActions : MonoBehaviourPunCallbacks
         {
             if (Physics.Raycast(Camera.position, Camera.forward, out RaycastHit hit, MaxUseDistance, UseLayers))
             {
+
                 if (hit.collider.TryGetComponent<Door>(out Door door))
                 {
+
                     if (door.isOpen)
                     {
-                        UseText.SetText("Close \"E\"");
+                        InfoText.text="Close \"E\"";
+                        
                     }
                     else
                     {
-                        UseText.SetText("Open \"E\"");
+                        InfoText.text="Open \"E\"";
                     }
-                    UseText.gameObject.SetActive(true);
-                    UseText.transform.position = hit.point - (hit.point - Camera.position).normalized * 0.1f;
-                    UseText.transform.rotation = Quaternion.LookRotation((hit.point - Camera.position).normalized);
+                    // UseText.transform.position = hit.point - (hit.point - Camera.position).normalized * 0.1f;
+                    // UseText.transform.rotation = Quaternion.LookRotation((hit.point - Camera.position).normalized);
                 }
                 else if (hit.collider.TryGetComponent<ShoppingItem>(out ShoppingItem shoppingItem))
                 {
-                    UseText.SetText("Select \"B\" to buy");
-                    UseText.gameObject.SetActive(true);
-                    UseText.transform.position = hit.point - (hit.point - Camera.position).normalized * 0.5f;
-                    UseText.transform.rotation = Quaternion.LookRotation((hit.point - Camera.position).normalized);
+                    InfoText.text="Select \"B\" to buy";
+                
+                    // UseText.transform.position = hit.point - (hit.point - Camera.position).normalized * 0.2f;
+                    // UseText.transform.rotation = Quaternion.LookRotation((hit.point - Camera.position).normalized);
+
+                    // UseText.transform.rotation = Quaternion.LookRotation(hit.transform.position - Camera.transform.position);
                 }
 
             }
             else
             {
-                UseText.gameObject.SetActive(false);
+                InfoText.text = "";
             }
         }
     }
