@@ -2477,6 +2477,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UseText: {fileID: 1398796850321012307}
   InfoText: {fileID: 0}
+  InfoTextHolder: {fileID: 0}
   Camera: {fileID: 0}
   MaxUseDistance: 5
   UseLayers:
