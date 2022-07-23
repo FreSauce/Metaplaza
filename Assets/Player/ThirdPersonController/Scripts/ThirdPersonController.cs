@@ -170,7 +170,6 @@ namespace StarterAssets
 #endif
             AssignAnimationIDs();
             photonView.RPC("ChangeVisuals", RpcTarget.AllViaServer);
-            ChangeVisuals();
 
             _usernameText.text = photonView.Owner.NickName.Split("||")[1];
             _jumpTimeoutDelta = JumpTimeout;

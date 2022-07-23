@@ -106,9 +106,13 @@ public class PlayerActions : MonoBehaviourPunCallbacks
                 else if (hit.collider.TryGetComponent<ShoppingItem>(out ShoppingItem shoppingItem))
                 {
                     UseText.SetText("Select \"B\" to buy");
+                    
                     UseText.gameObject.SetActive(true);
-                    UseText.transform.position = hit.point - (hit.point - Camera.position).normalized * 0.5f;
-                    UseText.transform.rotation = Quaternion.LookRotation((hit.point - Camera.position).normalized);
+                    
+                    UseText.transform.position = hit.point - (hit.point - Camera.position).normalized * 0.6f;
+                    // UseText.transform.rotation = Quaternion.LookRotation((hit.point - Camera.position).normalized);
+
+                    UseText.transform.rotation = Quaternion.LookRotation(UseText.transform.position - Camera.transform.position);
                 }
 
             }
