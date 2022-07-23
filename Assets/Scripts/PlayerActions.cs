@@ -2,6 +2,7 @@ using TMPro;
 using Photon.Voice.PUN;
 using UnityEngine;
 using Photon.Pun;
+using UnityEngine.UI;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 #endif
@@ -19,12 +20,16 @@ public class PlayerActions : MonoBehaviourPunCallbacks
 
     private PhotonVoiceNetwork _voiceNetwork;
 
+    public Canvas menuCanvas;
+
     private void Awake()
     {
         Camera = GameObject.FindGameObjectWithTag("MainCamera").transform;
 
         _voiceNetwork = PhotonVoiceNetwork.Instance;
         _voiceNetwork.PrimaryRecorder.TransmitEnabled = false;
+
+        menuCanvas = GameObject.FindGameObjectWithTag("MenuCanvas").GetComponent<Canvas>();
     }
 
     public void OnUse()
@@ -47,13 +52,12 @@ public class PlayerActions : MonoBehaviourPunCallbacks
 
     public void OnBuy()
     {
-        Debug.Log("Buyying");
         if (Physics.Raycast(Camera.position, Camera.forward, out RaycastHit hit, MaxUseDistance, UseLayers))
         {
             if (hit.collider.TryGetComponent<ShoppingItem>(out ShoppingItem shoppingItem))
             {
-                Debug.Log("Buyying product");
-                shoppingItem.print();
+                Debug.Log("Buyying");
+                menuCanvas.GetComponent<ShoppingMenu>().OpenMenu(shoppingItem.Name);
             }
         }
     }
@@ -89,7 +93,7 @@ public class PlayerActions : MonoBehaviourPunCallbacks
                 {
                     UseText.SetText("Select \"B\" to buy");
                     UseText.gameObject.SetActive(true);
-                    UseText.transform.position = hit.point - (hit.point - Camera.position).normalized * 0.2f;
+                    UseText.transform.position = hit.point - (hit.point - Camera.position).normalized * 0.5f;
                     UseText.transform.rotation = Quaternion.LookRotation((hit.point - Camera.position).normalized);
                 }
 

@@ -2480,6 +2480,7 @@ MonoBehaviour:
   UseLayers:
     serializedVersion: 2
     m_Bits: 1
+  menuCanvas: {fileID: 0}
 --- !u!114 &5626770579014655686
 MonoBehaviour:
   m_ObjectHideFlags: 0
