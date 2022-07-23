@@ -4,7 +4,7 @@ using System.Collections;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
+[System.Serializable]
 public class Login : MonoBehaviour
 {
     //private const string PASSWORD_REGEX = "(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,24})";
@@ -22,11 +22,11 @@ public class Login : MonoBehaviour
     [SerializeField] private TMP_InputField userNameInputField;
     [SerializeField] private TMP_InputField signupEmailInputField;
     [SerializeField] private TMP_InputField signupPasswordInputField;
-    public void Hide(GameObject obj)
+    public static void Hide(GameObject obj)
     {
        obj.SetActive(false);
     }
-    public void Show(GameObject obj)
+    public static void Show(GameObject obj)
     {
         obj.SetActive(true);
     }
@@ -38,7 +38,7 @@ public class Login : MonoBehaviour
 
     public void Start()
     {
-        Show(loginCanvas);
+        Hide(loginCanvas);
         Hide(SignupCanvas);
     }
 
