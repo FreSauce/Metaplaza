@@ -30,6 +30,12 @@ public class Login : MonoBehaviour
     {
         obj.SetActive(true);
     }
+
+    private void Awake()
+    {
+        PlayerPrefs.DeleteAll();
+    }
+
     public void Start()
     {
         Show(loginCanvas);
@@ -72,7 +78,7 @@ public class Login : MonoBehaviour
         if (email.Length > 0 && password.Length > 0 && confirmPassword.Length > 0 && username.Length > 0)
         {
             alertText.text = "Creating account...";
-            StartCoroutine(TryCreate(email, password, confirmPassword, username));
+            StartCoroutine(TryCreate(email, password, username, confirmPassword));
         }
     }
 
@@ -103,12 +109,14 @@ public class Login : MonoBehaviour
             Debug.Log(response.user._id);
             PlayerPrefs.SetString("token", response.token);
             PlayerPrefs.SetString("userId", response.user._id);
+            PlayerPrefs.SetString("username", response.user.name);
         }
         else
         {
             alertText.text = "Error connecting to the server...";
             PlayerPrefs.DeleteKey("token");
             PlayerPrefs.DeleteKey("userId");
+            PlayerPrefs.DeleteKey("username");
             ActivateButtons(true);
         }
         request.Dispose();
@@ -141,12 +149,14 @@ public class Login : MonoBehaviour
             //Debug.Log(response.token);
             PlayerPrefs.SetString("token", response.token); 
             PlayerPrefs.SetString("userId", response.user._id);
+            PlayerPrefs.SetString("username", response.user.name);
         }
         else
         {
             alertText.text = "Error connecting to the server...";
             PlayerPrefs.DeleteKey("token");
             PlayerPrefs.DeleteKey("userId");
+            PlayerPrefs.DeleteKey("username");
         }
         request.Dispose();
         ActivateButtons(true);

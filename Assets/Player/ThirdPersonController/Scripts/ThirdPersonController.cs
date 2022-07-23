@@ -5,6 +5,7 @@ using Photon.Pun;
 using Photon.Voice.PUN;
 using System.Collections;
 using Cinemachine;
+using TMPro;
 #endif
 
 /* Note: animations are called via the controller for both the character and capsule using animator null checks
@@ -81,6 +82,11 @@ namespace StarterAssets
         [Tooltip("For locking the camera position on all axis")]
         public bool LockCameraPosition = false;
 
+        //references
+        [SerializeField] private Animator animator;
+        [SerializeField] private GameObject usernameField;
+        [SerializeField] private CharacterRequests characterRequests;
+
         // cinemachine
         private float _cinemachineTargetYaw;
         private float _cinemachineTargetPitch;
@@ -92,6 +98,8 @@ namespace StarterAssets
         private float _rotationVelocity;
         private float _verticalVelocity;
         private float _terminalVelocity = 53.0f;
+        private TextMeshPro _usernameText;
+
 
         // timeout deltatime
         private float _jumpTimeoutDelta;
@@ -109,10 +117,8 @@ namespace StarterAssets
 #endif
         private CharacterController _controller;
         private StarterAssetsInputs _input;
-        [SerializeField] private Animator animator;
-        [SerializeField] private Avatar male;
+
         private Transform _mainCamera;
-        [SerializeField] private CharacterRequests characterRequests;
 
         private const float _threshold = 0.01f;
 
@@ -137,14 +143,13 @@ namespace StarterAssets
             {
                 _mainCamera = GameObject.FindGameObjectWithTag("MainCamera").transform;
             }
-            
-
+            _usernameText = usernameField.GetComponent<TextMeshPro>();
         }
 
         [PunRPC]
         public void ChangeVisuals()
         {
-            string userId = photonView.Owner.NickName;
+            string userId = photonView.Owner.NickName.Split("||")[0];
             Debug.Log(userId);
             characterRequests.InitializeCharacter(userId);
         }
@@ -153,8 +158,8 @@ namespace StarterAssets
 
         private void Start()
         {
+            Debug.Log(photonView.Owner.NickName);
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
-
             _hasAnimator = true;
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
@@ -163,13 +168,11 @@ namespace StarterAssets
 #else
 			Debug.LogError( "Starter Assets package is missing dependencies. Please use Tools/Starter Assets/Reinstall Dependencies to fix it");
 #endif
-
             AssignAnimationIDs();
-            //if (photonView.IsMine)
-            //{
-                photonView.RPC("ChangeVisuals", RpcTarget.AllViaServer);
-            //}
-            // reset our timeouts on start
+            //photonView.RPC("ChangeVisuals", RpcTarget.AllViaServer);
+            ChangeVisuals();
+
+            _usernameText.text = photonView.Owner.NickName.Split("||")[1];
             _jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;
         }
@@ -177,7 +180,8 @@ namespace StarterAssets
         private void Update()
         {
             _hasAnimator = true;
-            
+
+            LookAtCamera();
             if(photonView.IsMine)
             {
                 cineMachine.Priority = 100;
@@ -193,6 +197,11 @@ namespace StarterAssets
             { 
                 CameraRotation();
             }
+        }
+
+        public void LookAtCamera()
+        {
+            usernameField.transform.rotation = Quaternion.LookRotation(usernameField.transform.position - Camera.main.transform.position);
         }
 
         private void AssignAnimationIDs()
