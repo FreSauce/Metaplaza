@@ -13,7 +13,6 @@ public class CharacterRequests : MonoBehaviour
     private void Start()
     {
         character = GetComponent<AdvancedPeopleSystem.CharacterCustomization>();
-        //Debug.Log(character);
         StartCoroutine(GetCharacter(PlayerPrefs.GetString("userId"), (response) =>
         {
             if(response != null)
