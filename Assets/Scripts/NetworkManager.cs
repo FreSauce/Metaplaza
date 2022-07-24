@@ -17,8 +17,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         else
         {
             instance = this;
-            //keep instance even after changing scenes.
-            DontDestroyOnLoad(gameObject);
+            // keep instance even after changing scenes.
+            // DontDestroyOnLoad(gameObject);
         }
     }
 

@@ -8,6 +8,7 @@ TagManager:
   - Escalator
   - MenuCanvas
   - InfoText
+  - CollisionObjects
   layers:
   - Default
   - TransparentFX

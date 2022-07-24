@@ -18,7 +18,7 @@ public class PlayerActions : MonoBehaviourPunCallbacks
     [SerializeField]
     private Transform Camera;
     [SerializeField]
-    private float MaxUseDistance = 5f;
+    private float MaxUseDistance = 1f;
     [SerializeField]
     private LayerMask UseLayers;
 
@@ -113,12 +113,7 @@ public class PlayerActions : MonoBehaviourPunCallbacks
                 }
                 else if (hit.collider.TryGetComponent<ShoppingItem>(out ShoppingItem shoppingItem))
                 {
-                    InfoText.text="Select \"B\" to buy";
-                
-                    // UseText.transform.position = hit.point - (hit.point - Camera.position).normalized * 0.2f;
-                    // UseText.transform.rotation = Quaternion.LookRotation((hit.point - Camera.position).normalized);
-
-                    // UseText.transform.rotation = Quaternion.LookRotation(hit.transform.position - Camera.transform.position);
+                    InfoText.text = "Select \"B\" to buy "+shoppingItem.Name;
                 }
 
             }
