@@ -2,11 +2,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class ShoppingMenu : MonoBehaviour
+public class CartMenu : MonoBehaviour
 {
     public static bool MenuOpen = false;
 
-    public GameObject shoppingMenu;
+    public GameObject cartMenu;
 
     private void SetCursorState(bool newState)
     {
@@ -16,14 +16,14 @@ public class ShoppingMenu : MonoBehaviour
 
     public void OpenMenu()
     {
-        shoppingMenu.SetActive(true);
+        cartMenu.SetActive(true);
         MenuOpen = true;
         SetCursorState(false);
     }
 
     public void CloseMenu()
     {
-        shoppingMenu.SetActive(false);
+        cartMenu.SetActive(false);
         MenuOpen = false;
         SetCursorState(true);
     }

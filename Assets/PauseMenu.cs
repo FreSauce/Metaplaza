@@ -9,7 +9,7 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)&&!ShoppingMenu.MenuOpen)
+        if (Input.GetKeyDown(KeyCode.Escape)&&!CartMenu.MenuOpen)
         {
             if (GameIsPaused)
             {

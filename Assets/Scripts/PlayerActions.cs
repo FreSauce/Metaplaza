@@ -26,7 +26,7 @@ public class PlayerActions : MonoBehaviourPunCallbacks
 
     public Canvas menuCanvas;
 
-    public ShoppingMenu shoppingMenu;
+    public CartMenu cartMenu;
 
     private void Awake()
     {
@@ -37,7 +37,7 @@ public class PlayerActions : MonoBehaviourPunCallbacks
 
         menuCanvas = GameObject.FindGameObjectWithTag("MenuCanvas").GetComponent<Canvas>();
 
-        shoppingMenu = menuCanvas.GetComponent<ShoppingMenu>();
+        cartMenu = menuCanvas.GetComponent<CartMenu>();
 
         InfoText = menuCanvas.GetComponentInChildren<TextMeshProUGUI>();
     }
@@ -66,18 +66,7 @@ public class PlayerActions : MonoBehaviourPunCallbacks
         {
             if (hit.collider.TryGetComponent<ShoppingItem>(out ShoppingItem shoppingItem))
             {
-                Debug.Log(PauseMenu.GameIsPaused);
-                if (!PauseMenu.GameIsPaused)
-                {
-                    if (!ShoppingMenu.MenuOpen)
-                    {
-                        shoppingMenu.OpenMenu();
-                    }
-                    else
-                    {
-                        shoppingMenu.CloseMenu();
-                    }
-                }
+                // CODE TO BUY THE PRODUCT
             }
         }
     }
@@ -86,6 +75,24 @@ public class PlayerActions : MonoBehaviourPunCallbacks
     {
         _voiceNetwork.PrimaryRecorder.TransmitEnabled = !_voiceNetwork.PrimaryRecorder.TransmitEnabled;
         Debug.Log(_voiceNetwork.PrimaryRecorder.TransmitEnabled);
+    }
+
+    public void OnCart()
+    {
+        // CODE TO DISPLAY THE CART
+        
+        Debug.Log(PauseMenu.GameIsPaused);
+        if (!PauseMenu.GameIsPaused)
+        {
+            if (!CartMenu.MenuOpen)
+            {
+                cartMenu.OpenMenu();
+            }
+            else
+            {
+                cartMenu.CloseMenu();
+            }
+        }
     }
 
 
