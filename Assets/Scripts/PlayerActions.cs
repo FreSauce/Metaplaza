@@ -113,7 +113,7 @@ public class PlayerActions : MonoBehaviourPunCallbacks
                 }
                 else if (hit.collider.TryGetComponent<ShoppingItem>(out ShoppingItem shoppingItem))
                 {
-                    InfoText.text = "Select \"B\" to buy "+shoppingItem.Name;
+                    InfoText.text = "Select \"B\" to buy "+shoppingItem.name;
                 }
 
             }
