@@ -4,7 +4,10 @@ using System.Collections;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Threading.Tasks;
+using System;
 
+[System.Serializable]
 public class Login : MonoBehaviour
 {
     //private const string PASSWORD_REGEX = "(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,24})";
@@ -22,17 +25,23 @@ public class Login : MonoBehaviour
     [SerializeField] private TMP_InputField userNameInputField;
     [SerializeField] private TMP_InputField signupEmailInputField;
     [SerializeField] private TMP_InputField signupPasswordInputField;
-    public void Hide(GameObject obj)
+    public static void Hide(GameObject obj)
     {
        obj.SetActive(false);
     }
-    public void Show(GameObject obj)
+    public static void Show(GameObject obj)
     {
         obj.SetActive(true);
     }
+
+    private void Awake()
+    {
+        // PlayerPrefs.DeleteAll();
+    }
+
     public void Start()
     {
-        Show(loginCanvas);
+        Hide(loginCanvas);
         Hide(SignupCanvas);
     }
 
@@ -55,7 +64,7 @@ public class Login : MonoBehaviour
         if (username.Length > 0 && password.Length > 0)
         {
             alertText.text = "Signing in...";
-            StartCoroutine(TryLogin(username, password));
+            TryLogin(username, password);
         }
     }
 
@@ -72,85 +81,97 @@ public class Login : MonoBehaviour
         if (email.Length > 0 && password.Length > 0 && confirmPassword.Length > 0 && username.Length > 0)
         {
             alertText.text = "Creating account...";
-            StartCoroutine(TryCreate(email, password, confirmPassword, username));
+            TryCreate(email, password, username, confirmPassword);
         }
     }
 
-    private IEnumerator TryLogin(string username,string password)
+    private async void TryLogin(string username, string password)
     {
-        WWWForm form = new WWWForm();
-        form.AddField("email", username);
-        form.AddField("password", password);
-        if (username.Length <= 0 && password.Length <= 0) { yield break; }
-        UnityWebRequest request = UnityWebRequest.Post(loginEndpoint, form);
-        var handler = request.SendWebRequest();
-        float startTime = 0.0f;
-        while (!handler.isDone)
+        try
         {
-            startTime += Time.deltaTime;
-
-            if (startTime > 10.0f)
+            WWWForm form = new WWWForm();
+            form.AddField("email", username);
+            form.AddField("password", password);
+            if (username.Length <= 0 && password.Length <= 0)
             {
-                break;
+                alertText.text = "Enter Email and Password";
+                return;
             }
+            UnityWebRequest request = UnityWebRequest.Post(loginEndpoint, form);
+            var handler = request.SendWebRequest();
 
-            yield return null;
-        }
-        if (request.result == UnityWebRequest.Result.Success)
+            while (!handler.isDone)
+            {
+                await Task.Yield();
+            }
+            if (request.result == UnityWebRequest.Result.Success)
+            {
+                // Debug.Log(request.downloadHandler.text);
+                LoginResponse response = JsonUtility.FromJson<LoginResponse>(request.downloadHandler.text);
+                Debug.Log(response.user._id);
+                PlayerPrefs.SetString("token", response.token);
+                PlayerPrefs.SetString("userId", response.user._id);
+                PlayerPrefs.SetString("username", response.user.name);
+            }
+            else
+            {
+                PlayerPrefs.DeleteKey("token");
+                PlayerPrefs.DeleteKey("userId");
+                PlayerPrefs.DeleteKey("username");
+                alertText.text = "Error Connecting to Server...";
+                ActivateButtons(true);
+            }
+            request.Dispose();
+        }catch(Exception ex)
         {
-            // Debug.Log(request.downloadHandler.text);
-            LoginResponse response = JsonUtility.FromJson<LoginResponse>(request.downloadHandler.text);
-            Debug.Log(response.user._id);
-            PlayerPrefs.SetString("token", response.token);
-            PlayerPrefs.SetString("userId", response.user._id);
-        }
-        else
-        {
-            alertText.text = "Error connecting to the server...";
+            Debug.Log(ex);
             PlayerPrefs.DeleteKey("token");
             PlayerPrefs.DeleteKey("userId");
+            PlayerPrefs.DeleteKey("username");
+            alertText.text = ex.Message;
             ActivateButtons(true);
         }
-        request.Dispose();
-        yield return null;
     }
-    private IEnumerator TryCreate(string email,string password, string username,string confirmPassword)
+    private async void TryCreate(string email,string password, string username,string confirmPassword)
     {
-        WWWForm form = new WWWForm();
-        form.AddField("email", email);
-        form.AddField("password", password);
-        form.AddField("name", username);
-        form.AddField("confirmPassword", confirmPassword);
-        UnityWebRequest request = UnityWebRequest.Post(signupEndpoint, form);
-        var handler = request.SendWebRequest();
-        float startTime = 0.0f;
-        while (!handler.isDone)
+        try
         {
-            startTime += Time.deltaTime;
-            if (startTime > 10.0f)
+            WWWForm form = new WWWForm();
+            form.AddField("email", email);
+            form.AddField("password", password);
+            form.AddField("name", username);
+            form.AddField("confirmPassword", confirmPassword);
+            UnityWebRequest request = UnityWebRequest.Post(signupEndpoint, form);
+            var handler = request.SendWebRequest();
+            while (!handler.isDone)
             {
-                break;
+                await Task.Yield();
             }
-            yield return null;
-        }
-        Debug.Log(request.result);
-        if (request.result == UnityWebRequest.Result.Success)
+            Debug.Log(request.result);
+            if (request.result == UnityWebRequest.Result.Success)
+            {
+                LoginResponse response = JsonUtility.FromJson<LoginResponse>(request.downloadHandler.text);
+                PlayerPrefs.SetString("token", response.token);
+                PlayerPrefs.SetString("userId", response.user._id);
+                PlayerPrefs.SetString("username", response.user.name);
+            }
+            else
+            {
+                alertText.text = "Error connecting to the server...";
+                PlayerPrefs.DeleteKey("token");
+                PlayerPrefs.DeleteKey("userId");
+                PlayerPrefs.DeleteKey("username");
+            }
+            request.Dispose();
+            ActivateButtons(true);
+        }catch(Exception ex)
         {
-            //Debug.Log(request.downloadHandler.text);
-            LoginResponse response = JsonUtility.FromJson<LoginResponse>(request.downloadHandler.text);
-            //Debug.Log(response.token);
-            PlayerPrefs.SetString("token", response.token); 
-            PlayerPrefs.SetString("userId", response.user._id);
-        }
-        else
-        {
-            alertText.text = "Error connecting to the server...";
             PlayerPrefs.DeleteKey("token");
             PlayerPrefs.DeleteKey("userId");
+            PlayerPrefs.DeleteKey("username");
+            alertText.text = ex.Message;
+            ActivateButtons(true);
         }
-        request.Dispose();
-        ActivateButtons(true);
-        yield return null;
     }
 
     private void ActivateButtons(bool toggle)

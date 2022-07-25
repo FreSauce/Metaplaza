@@ -6,6 +6,9 @@ TagManager:
   tags:
   - CinemachineTarget
   - Escalator
+  - MenuCanvas
+  - InfoText
+  - CollisionObjects
   layers:
   - Default
   - TransparentFX

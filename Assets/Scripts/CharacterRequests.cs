@@ -4,6 +4,9 @@ using System.Collections;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Threading.Tasks;
+using System;
+
 public class CharacterRequests : MonoBehaviour
 {
     [SerializeField] private static string saveEndpoint= "https://ancient-retreat-18243.herokuapp.com/api/users/sendCharacterData";
@@ -13,8 +16,7 @@ public class CharacterRequests : MonoBehaviour
     private void Start()
     {
         character = GetComponent<AdvancedPeopleSystem.CharacterCustomization>();
-        //Debug.Log(character);
-        StartCoroutine(GetCharacter(PlayerPrefs.GetString("userId"), (response) =>
+        GetCharacter(PlayerPrefs.GetString("userId"), (response) =>
         {
             if(response != null)
             {
@@ -32,7 +34,7 @@ public class CharacterRequests : MonoBehaviour
                     character.ApplyCharacterData(response.characterData);
                 }
             }
-        }));
+        });
     }
 
     private void Update()
@@ -48,7 +50,7 @@ public class CharacterRequests : MonoBehaviour
     {
         character = GetComponent<AdvancedPeopleSystem.CharacterCustomization>();
         //Debug.Log(character);
-        StartCoroutine(GetCharacter(userId, (response) =>
+        GetCharacter(userId, (response) =>
         {
             //Debug.Log(response.characterType);
             //Debug.Log(PlayerPrefs.GetString("token"));
@@ -61,77 +63,79 @@ public class CharacterRequests : MonoBehaviour
                 character.SwitchCharacterSettings(1);
             }
             character.ApplyCharacterData(response.characterData);
-        }));
+        });
     }
 
-    public static IEnumerator SaveCharacter(string data, System.Action<PostResponse> Callback)
+    public static async void SaveCharacter(string data, System.Action<PostResponse> Callback)
     {
-        if (data.Length <= 0) { yield break; }
-        //Debug.Log(data);
-        WWWForm form = new WWWForm();
-        form.AddField("character_data", data);
-        UnityWebRequest request = UnityWebRequest.Post(saveEndpoint, form);
-        request.SetRequestHeader("authorization", "Bearer " + PlayerPrefs.GetString("token"));
-        var handler = request.SendWebRequest();
-        float startTime = 0.0f;
-        while (!handler.isDone)
+        try
         {
-            startTime += Time.deltaTime;
-            if (startTime > 10.0f)
+            if (data.Length <= 0)
             {
-                break;
+                return;
             }
-            yield return null;
-        }
-        //Debug.Log(request.result.ToString());
+            //Debug.Log(data);
+            WWWForm form = new WWWForm();
+            form.AddField("character_data", data);
+            UnityWebRequest request = UnityWebRequest.Post(saveEndpoint, form);
+            request.SetRequestHeader("authorization", "Bearer " + PlayerPrefs.GetString("token"));
+            var handler = request.SendWebRequest();
 
-        if (request.result == UnityWebRequest.Result.Success)
+            while (!handler.isDone)
+            {
+                await Task.Yield();
+            }
+
+            if (request.result == UnityWebRequest.Result.Success)
+            {
+                PostResponse response = JsonUtility.FromJson<PostResponse>(request.downloadHandler.text);
+                Callback(response);
+            }
+            else
+            {
+                Debug.Log("Error connecting to the server...");
+                PlayerPrefs.DeleteKey("token");
+                Callback(null);
+            }
+            request.Dispose();
+        }catch(Exception ex)
         {
-            PostResponse response = JsonUtility.FromJson<PostResponse>(request.downloadHandler.text);
-            Callback(response);
+            Debug.LogException(ex);
         }
-        else
-        {
-            Debug.Log("Error connecting to the server...");
-            PlayerPrefs.DeleteKey("token");
-            Callback(null);
-        }
-        request.Dispose();
-        yield return null;
     }
 
-    public static IEnumerator GetCharacter(string userId, System.Action<GetResponse> Callback)
+    public static async void GetCharacter(string userId, System.Action<GetResponse> Callback)
     {
-        UnityWebRequest request = UnityWebRequest.Get(loadEndpoint + userId);
-        request.SetRequestHeader("authorization", "Bearer " + PlayerPrefs.GetString("token"));
-        var handler = request.SendWebRequest();
-        float startTime = 0.0f;
-        while (!handler.isDone)
+        try
         {
-            startTime += Time.deltaTime;
-            if (startTime > 10.0f)
+            UnityWebRequest request = UnityWebRequest.Get(loadEndpoint + userId);
+            request.SetRequestHeader("authorization", "Bearer " + PlayerPrefs.GetString("token"));
+            var handler = request.SendWebRequest();
+            while (!handler.isDone)
             {
-                break;
+                await Task.Yield();
             }
-            yield return null;
-        }
 
-        //Debug.Log(request.result.ToString());
+            //Debug.Log(request.result.ToString());
 
-        if (request.result == UnityWebRequest.Result.Success)
-        {
-            //Debug.Log(request.downloadHandler.text);
-            GetResponse response = JsonUtility.FromJson<GetResponse>(request.downloadHandler.text);
-            Callback(response);
+            if (request.result == UnityWebRequest.Result.Success)
+            {
+                //Debug.Log(request.downloadHandler.text);
+                GetResponse response = JsonUtility.FromJson<GetResponse>(request.downloadHandler.text);
+                Callback(response);
+            }
+            else
+            {
+                Debug.Log("Error connecting to the server: " + request.result);
+                PlayerPrefs.DeleteKey("token");
+                Callback(null);
+            }
+            request.Dispose();
         }
-        else
+        catch (Exception ex)
         {
-            Debug.Log("Error connecting to the server: " + request.result);
-            PlayerPrefs.DeleteKey("token");
-            Callback(null);
+            Debug.LogException(ex);
         }
-        request.Dispose();
-        yield return null;
     }
 
 
