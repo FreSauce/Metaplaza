@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -6,20 +7,6 @@ public class PauseMenu : MonoBehaviour
 
     public GameObject pauseMenuUI;
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape)&&!ShoppingMenu.MenuOpen)
-        {
-            if (GameIsPaused)
-            {
-                Resume();
-            }
-            else
-            {
-                Pause();
-            }
-        }
-    }
     private void SetCursorState(bool newState)
     {
         Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
@@ -33,20 +20,21 @@ public class PauseMenu : MonoBehaviour
         SetCursorState(true);
     }
 
-    void Pause()
+    public void Pause()
     {
         pauseMenuUI.SetActive(true);
+
         GameIsPaused = true;
         SetCursorState(false);
     }
 
     public void LoadMenu()
     {
-        Debug.Log("Load Menu");
+        SceneManager.LoadScene(0);
     }
 
     public void QuitGame()
     {
-        Debug.Log("Quit Game");
+        Application.Quit();
     }
 }

@@ -36,7 +36,7 @@ public class Login : MonoBehaviour
 
     private void Awake()
     {
-        PlayerPrefs.DeleteAll();
+        // PlayerPrefs.DeleteAll();
     }
 
     public void Start()
