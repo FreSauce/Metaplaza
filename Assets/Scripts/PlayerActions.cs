@@ -222,6 +222,9 @@ public class PlayerActions : MonoBehaviourPunCallbacks
             else
             {
                 Debug.Log(request.downloadHandler.text);
+                CartResponse response = JsonUtility.FromJson<CartResponse>(request.downloadHandler.text);
+                Debug.Log(response.data[0].name);
+                cartMenu.setItems(response.data);
             }
         }
         catch (Exception e)
@@ -230,5 +233,7 @@ public class PlayerActions : MonoBehaviourPunCallbacks
         }
     }
 }
+
+
 
 
