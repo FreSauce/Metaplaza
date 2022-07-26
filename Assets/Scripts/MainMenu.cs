@@ -14,6 +14,7 @@ public class MainMenu : MonoBehaviour
 
     public GameObject loginCanvas;
     public GameObject SignupCanvas;
+    public GameObject MainMenuCanvas;
 
     public void Show(TextMeshProUGUI obj)
     {
@@ -27,6 +28,7 @@ public class MainMenu : MonoBehaviour
 
     public void Start()
     {
+        Login.Show(MainMenuCanvas);
         if (PlayerPrefs.HasKey("token"))
         {
             Hide(LoginBtn);

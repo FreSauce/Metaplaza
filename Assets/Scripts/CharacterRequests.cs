@@ -37,15 +37,6 @@ public class CharacterRequests : MonoBehaviour
         });
     }
 
-    private void Update()
-    {
-        if(!PlayerPrefs.HasKey("token"))
-        {
-            Debug.Log("Going to Scene 1: " + PlayerPrefs.GetString("token"));
-            SceneManager.LoadScene(0);
-        }
-    }
-
     public void InitializeCharacter(string userId)
     {
         character = GetComponent<AdvancedPeopleSystem.CharacterCustomization>();

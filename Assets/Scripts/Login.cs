@@ -45,15 +45,6 @@ public class Login : MonoBehaviour
         Hide(SignupCanvas);
     }
 
-    private void Update()
-    {
-        if (PlayerPrefs.HasKey("token"))
-        {
-            Debug.Log("Token: " + PlayerPrefs.GetString("token"));
-            SceneManager.LoadScene(1);
-        }
-    }
-
     public void OnLoginClick()
     {
         string username = emailInputField.text;

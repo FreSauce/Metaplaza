@@ -5,7 +5,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 {
     public static NetworkManager instance;
     public PhotonView playerPrefab;
-    public Vector3 spawnPoint;
+    public Transform spawnPoint;
 
     private void Awake()
     {
@@ -60,6 +60,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         Debug.Log("Joined room successfully");
         PhotonNetwork.NickName = PlayerPrefs.GetString("userId") + "||" + PlayerPrefs.GetString("username");
         
-        PhotonNetwork.Instantiate(playerPrefab.name, spawnPoint, Quaternion.identity);
+        PhotonNetwork.Instantiate(playerPrefab.name, spawnPoint.position, Quaternion.identity);
     }
 }
