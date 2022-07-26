@@ -37,7 +37,6 @@ public class PortalTeleporter : MonoBehaviourPunCallbacks
         }
         else
         {
-            Debug.Log(player.transform);
             if(playerIsOverlapping)
             {
                 Vector3 portalToPlayer = player.transform.position - transform.position;
@@ -51,7 +50,6 @@ public class PortalTeleporter : MonoBehaviourPunCallbacks
                     player.GetComponent<CharacterController>().enabled = false;
                     player.transform.position = pos;
                     player.GetComponent<CharacterController>().enabled = true;
-                    Debug.Log("New Position:" + player.transform.position);
                     playerIsOverlapping = false;
             }
         }
@@ -61,7 +59,6 @@ public class PortalTeleporter : MonoBehaviourPunCallbacks
     {
         if(other.CompareTag("MainPlayer"))
         {
-            Debug.Log("Old Position: " + player.transform.position);
             playerIsOverlapping = true;
         }
     }
