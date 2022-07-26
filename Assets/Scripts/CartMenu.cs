@@ -2,6 +2,8 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
+using UnityEngine.Networking;
 
 public class CartMenu : MonoBehaviour
 {
@@ -9,8 +11,9 @@ public class CartMenu : MonoBehaviour
 
     public GameObject cartMenu;
     [SerializeField]
+    public GameObject cartMenuContent;
     public GameObject cartItemPrefab;
-    public List<GameObject> cartItems;
+    public List<ICartItem> cartItems;
 
     private void SetCursorState(bool newState)
     {
@@ -32,19 +35,29 @@ public class CartMenu : MonoBehaviour
         SetCursorState(true);
     }
 
-    public void setItems(ICartItem[] items)
+    public async void setItems(ICartItem[] items)
     {
         foreach(ICartItem item in items)
         {
             Debug.Log(item.ToString());
-            GameObject temp = Instantiate(cartItemPrefab);
-            temp.transform.SetParent(cartMenu.transform);
-            temp.transform.localScale = Vector3.one;
-            CartItem ct = temp.GetComponent<CartItem>();
-            ct.name.text = item.name;
-            ct.price.text = item.price;
-            ct.quantity.text = item.quantity.ToString();
-            cartItems.Add(temp);
+            bool flag = true;
+            foreach(ICartItem it in cartItems)
+            {
+                if (it._id == item._id )
+                {
+                    flag = false;
+                    break;
+                }
+            }
+            if (flag)
+            {
+                GameObject temp = Instantiate(cartItemPrefab);
+                temp.transform.SetParent(cartMenuContent.transform);
+                temp.transform.localScale = Vector3.one;
+                CartItem ct = temp.GetComponent<CartItem>();
+                ct.setItem(item);
+                cartItems.Add(item);
+            }
         }
 
     }
