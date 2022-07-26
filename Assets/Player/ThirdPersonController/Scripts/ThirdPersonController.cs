@@ -154,7 +154,11 @@ namespace StarterAssets
             characterRequests.InitializeCharacter(userId);
         }
 
-
+        [PunRPC]
+        void TP1(Vector3 pos)
+        {
+            transform.position = (pos);
+        }
 
         private void Start()
         {
@@ -170,6 +174,10 @@ namespace StarterAssets
 #endif
             AssignAnimationIDs();
             photonView.RPC("ChangeVisuals", RpcTarget.AllViaServer);
+            if(photonView.IsMine)
+            {
+                gameObject.tag = "MainPlayer";
+            }
 
             _usernameText.text = photonView.Owner.NickName.Split("||")[1];
             _jumpTimeoutDelta = JumpTimeout;
@@ -225,6 +233,7 @@ namespace StarterAssets
             {
                 animator.SetBool(_animIDGrounded, Grounded);
             }
+            
         }
 
         private void CameraRotation()
