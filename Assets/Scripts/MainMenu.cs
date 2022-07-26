@@ -6,16 +6,14 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] public TextMeshProUGUI LoginBtn;
-    [SerializeField] public TextMeshProUGUI Signup;
-    [SerializeField] public TextMeshProUGUI PlayButton;
-    [SerializeField] public TextMeshProUGUI CharGen;
-    [SerializeField] public TextMeshProUGUI Logout;
-
     public GameObject loginCanvas;
     public GameObject SignupCanvas;
     public GameObject MainMenuCanvas;
-
+    public GameObject PlayBtn;
+    public GameObject CharGenBtn;
+    public GameObject logoutBtn;
+    public GameObject SignupBtn;
+    public GameObject LoginBtn;
     public void Show(TextMeshProUGUI obj)
     {
         obj.enabled = true;
@@ -29,21 +27,23 @@ public class MainMenu : MonoBehaviour
     public void Start()
     {
         Login.Show(MainMenuCanvas);
+        Debug.Log(PlayerPrefs.GetString("token"));
         if (PlayerPrefs.HasKey("token"))
         {
-            Hide(LoginBtn);
-            Hide(Signup);
-            Show(PlayButton);
-            Show(CharGen);
-            Show(Logout);
+            Debug.Log(1);
+            Login.Hide(LoginBtn);
+            Login.Hide(SignupBtn);
+            Login.Show(PlayBtn);
+            Login.Show(CharGenBtn);
+            Login.Show(logoutBtn);
         }
         else
         {
-            Hide(Logout);
-            Show(LoginBtn);
-            Show(Signup);
-            Hide(CharGen);
-            Hide(PlayButton);
+            Login.Show(LoginBtn);
+            Login.Show(SignupBtn);
+            Login.Hide(PlayBtn);
+            Login.Hide(CharGenBtn);
+            Login.Hide(logoutBtn);
         }
     }
 
@@ -51,25 +51,25 @@ public class MainMenu : MonoBehaviour
     {
         Login.Hide(SignupCanvas);
         Login.Show(loginCanvas);
-        Hide(LoginBtn);
-        Hide(Signup);
+        Login.Hide(LoginBtn);
+        Login.Hide(SignupBtn);
     }
 
     public void LoadSignupScene()
     {
         Login.Show(SignupCanvas);
         Login.Hide(loginCanvas);
-        Hide(LoginBtn);
-        Hide(Signup);
+        Login.Hide(LoginBtn);
+        Login.Hide(SignupBtn);
     }
 
     public void LoadCharacterScene()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(1);
     }
     public void LoadPlayScene()
     {
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(2);
     }
     public void LogoutBtn()
     {

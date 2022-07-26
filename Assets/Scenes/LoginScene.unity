@@ -10385,7 +10385,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &129958936
 RectTransform:
   m_ObjectHideFlags: 0
@@ -35765,7 +35765,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &927325524
 RectTransform:
   m_ObjectHideFlags: 0
@@ -60182,14 +60182,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2d8e63ef94a82048a6bc12d7d87c7b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LoginBtn: {fileID: 256489383}
-  Signup: {fileID: 2028835659}
-  PlayButton: {fileID: 129958940}
-  CharGen: {fileID: 927325528}
-  Logout: {fileID: 2043251325}
   loginCanvas: {fileID: 1781047616}
   SignupCanvas: {fileID: 479227743}
   MainMenuCanvas: {fileID: 620736446}
+  PlayBtn: {fileID: 129958935}
+  CharGenBtn: {fileID: 927325523}
+  logoutBtn: {fileID: 2043251320}
+  SignupBtn: {fileID: 2028835655}
+  LoginBtn: {fileID: 256489379}
 --- !u!114 &1609210610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77148,7 +77148,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2043251321
 RectTransform:
   m_ObjectHideFlags: 0

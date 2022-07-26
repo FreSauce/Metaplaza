@@ -103,6 +103,7 @@ public class Login : MonoBehaviour
                 PlayerPrefs.SetString("token", response.token);
                 PlayerPrefs.SetString("userId", response.user._id);
                 PlayerPrefs.SetString("username", response.user.name);
+                SceneManager.LoadScene(1);
             }
             else
             {
