@@ -6314,7 +6314,6 @@ GameObject:
   - component: {fileID: 4822965903521790477}
   - component: {fileID: 339992924918051339}
   - component: {fileID: 4455475644024696344}
-  - component: {fileID: 3892196373755035723}
   m_Layer: 0
   m_Name: Username
   m_TagString: Untagged
@@ -6476,18 +6475,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 339992924918051339}
   m_maskType: 0
---- !u!114 &3892196373755035723
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4004289193247659411}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f6461a6b2edb744faf8c3b75a4967ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4048724021832602321
 GameObject:
   m_ObjectHideFlags: 0
@@ -14394,7 +14381,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2070925441746177913, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
       propertyPath: m_Lens.m_SensorSize.x
-      value: 2.0182927
+      value: 1.7781765
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2070925442191277753, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
