@@ -2,6 +2,9 @@ using TMPro;
 using Photon.Voice.PUN;
 using UnityEngine;
 using Photon.Pun;
+using System.Threading.Tasks;
+using System;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
@@ -28,6 +31,9 @@ public class PlayerActions : MonoBehaviourPunCallbacks
 
     public CartMenu cartMenu;
 
+    private string addToCartEndpoint = "https://ancient-retreat-18243.herokuapp.com/api/cart/addToCart/";
+    private string fetchCartEndpoint = "https://ancient-retreat-18243.herokuapp.com/api/cart/getCart";
+
     private void Awake()
     {
         Camera = GameObject.FindGameObjectWithTag("MainCamera").transform;
@@ -44,11 +50,11 @@ public class PlayerActions : MonoBehaviourPunCallbacks
 
     public void OnUse()
     {
-        if(Physics.Raycast(Camera.position,Camera.forward,out RaycastHit hit,MaxUseDistance,UseLayers))
+        if (Physics.Raycast(Camera.position, Camera.forward, out RaycastHit hit, MaxUseDistance, UseLayers))
         {
-            if(hit.collider.TryGetComponent<Door>(out Door door))
+            if (hit.collider.TryGetComponent<Door>(out Door door))
             {
-                if(door.isOpen)
+                if (door.isOpen)
                 {
                     door.Close();
                 }
@@ -67,6 +73,7 @@ public class PlayerActions : MonoBehaviourPunCallbacks
             if (hit.collider.TryGetComponent<ShoppingItem>(out ShoppingItem shoppingItem))
             {
                 // CODE TO BUY THE PRODUCT
+                addToCart(shoppingItem.id);
             }
         }
     }
@@ -80,12 +87,13 @@ public class PlayerActions : MonoBehaviourPunCallbacks
     public void OnCart()
     {
         // CODE TO DISPLAY THE CART
-        
+
         Debug.Log(PauseMenu.GameIsPaused);
         if (!PauseMenu.GameIsPaused)
         {
             if (!CartMenu.MenuOpen)
             {
+                fetchCart();
                 cartMenu.OpenMenu();
             }
             else
@@ -108,19 +116,19 @@ public class PlayerActions : MonoBehaviourPunCallbacks
 
                     if (door.isOpen)
                     {
-                        InfoText.text="Close \"E\"";
-                        
+                        InfoText.text = "Close \"E\"";
+
                     }
                     else
                     {
-                        InfoText.text="Open \"E\"";
+                        InfoText.text = "Open \"E\"";
                     }
                     // UseText.transform.position = hit.point - (hit.point - Camera.position).normalized * 0.1f;
                     // UseText.transform.rotation = Quaternion.LookRotation((hit.point - Camera.position).normalized);
                 }
                 else if (hit.collider.TryGetComponent<ShoppingItem>(out ShoppingItem shoppingItem))
                 {
-                    InfoText.text = "Select \"B\" to buy "+shoppingItem.name;
+                    InfoText.text = "Select \"B\" to buy " + shoppingItem.name;
                 }
 
             }
@@ -128,6 +136,73 @@ public class PlayerActions : MonoBehaviourPunCallbacks
             {
                 InfoText.text = "";
             }
+        }
+    }
+
+
+    // ADD TO CART
+    public async void addToCart(string _id)
+    {
+        if (_id != "")
+        {
+            try
+            { 
+                UnityWebRequest request = UnityWebRequest.Get(addToCartEndpoint + _id);
+                request.SetRequestHeader("Authorization", "Bearer " + PlayerPrefs.GetString("token"));
+                Debug.Log(request.ToString());
+                var handler = request.SendWebRequest();
+
+                while (!handler.isDone)
+                {
+                    await Task.Yield();
+                }
+
+                Debug.Log(request.result);
+
+                if (request.result != UnityWebRequest.Result.Success)
+                {
+                    Debug.Log(request.error);
+                }
+                else
+                { 
+                    Debug.Log("SUCCESSFULLY ADDED TO CART");
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.Log(e);
+            }
+        }
+    }
+
+    // FETCH CART
+    public async void fetchCart()
+    {
+        try
+        {
+            UnityWebRequest request = UnityWebRequest.Get(fetchCartEndpoint);
+            request.SetRequestHeader("Authorization", "Bearer " + PlayerPrefs.GetString("token"));
+            var handler = request.SendWebRequest();
+
+            while (!handler.isDone)
+            {
+                await Task.Yield();
+            }
+
+            Debug.Log(request.result);
+
+            if (request.result != UnityWebRequest.Result.Success)
+            {
+                Debug.Log(request.error);
+            }
+            else
+            {
+                Debug.Log(request.downloadHandler.text);
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e);
         }
     }
 }

@@ -17,6 +17,8 @@ public class ShoppingItem : MonoBehaviour
     
     private string link;
 
+    private string fetchProductEndpoint = "https://ancient-retreat-18243.herokuapp.com/api/products/getProduct/";
+
     public void Start()
     {
         fetchData();
@@ -28,7 +30,7 @@ public class ShoppingItem : MonoBehaviour
         {
             try
             {
-                UnityWebRequest request = UnityWebRequest.Get("https://ancient-retreat-18243.herokuapp.com/api/products/getProduct/" + this.id);
+                UnityWebRequest request = UnityWebRequest.Get(fetchProductEndpoint + this.id);
                 request.SetRequestHeader("Authorization", "Bearer " + PlayerPrefs.GetString("token"));
                 var handler = request.SendWebRequest();
                 
