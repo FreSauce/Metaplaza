@@ -37,10 +37,6 @@ public class PortalTeleporter : MonoBehaviourPunCallbacks
         }
         else
         {
-<<<<<<< Updated upstream
-=======
-            //Debug.Log(player.transform);
->>>>>>> Stashed changes
             if(playerIsOverlapping)
             {
                 Vector3 portalToPlayer = player.transform.position - transform.position;
