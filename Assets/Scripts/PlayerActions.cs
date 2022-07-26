@@ -31,6 +31,8 @@ public class PlayerActions : MonoBehaviourPunCallbacks
 
     public CartMenu cartMenu;
 
+    public PauseMenu pauseMenu;
+
     private string addToCartEndpoint = "https://ancient-retreat-18243.herokuapp.com/api/cart/addToCart/";
     private string fetchCartEndpoint = "https://ancient-retreat-18243.herokuapp.com/api/cart/getCart";
 
@@ -44,6 +46,8 @@ public class PlayerActions : MonoBehaviourPunCallbacks
         menuCanvas = GameObject.FindGameObjectWithTag("MenuCanvas").GetComponent<Canvas>();
 
         cartMenu = menuCanvas.GetComponent<CartMenu>();
+
+        pauseMenu = menuCanvas.GetComponent<PauseMenu>();
 
         InfoText = menuCanvas.GetComponentInChildren<TextMeshProUGUI>();
     }
@@ -100,6 +104,26 @@ public class PlayerActions : MonoBehaviourPunCallbacks
             {
                 cartMenu.CloseMenu();
             }
+        }
+    }
+
+    public void OnCloseMenu()
+    {
+        
+        if (!CartMenu.MenuOpen)
+        {
+            if (PauseMenu.GameIsPaused)
+            {
+                pauseMenu.Resume();
+            }
+            else
+            {
+                pauseMenu.Pause();
+            }
+        }
+        else
+        {
+            cartMenu.CloseMenu();
         }
     }
 
