@@ -5,8 +5,9 @@ using UnityEngine.SceneManagement;
 public class NetworkManager : MonoBehaviourPunCallbacks
 {
     public static NetworkManager instance;
-    public PhotonView playerPrefab;
-    public Transform spawnPoint;
+    public bool isConnectedToMaster = false;
+    public bool hasJoinedRoom = false;
+    public static Vector3 spawnPoint = new Vector3(-5, 5, 2.2f);
 
     private void Awake()
     {
@@ -19,37 +20,30 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         {
             instance = this;
             // keep instance even after changing scenes.
-            // DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(gameObject);
         }
     }
 
-    public void Update()
+    public void Start()
     {
-        if(SceneManager.GetActiveScene().buildIndex == 0)
+        SceneManager.activeSceneChanged += handleSceneChange;
+    }
+
+    public void handleSceneChange(Scene past, Scene current)
+    {
+        Debug.Log(SceneManager.GetActiveScene().buildIndex);
+        if (SceneManager.GetActiveScene().buildIndex == 0 && hasJoinedRoom)
         {
             Debug.Log("Leave Room");
-            PhotonNetwork.Disconnect();
+            PhotonNetwork.LeaveRoom();
+            hasJoinedRoom = false;
         }
-    }
-
-    private void Start()
-    {
-        PhotonNetwork.ConnectUsingSettings();
-    }
-
-    public void CreateRoom(string roomName)
-    {
-        PhotonNetwork.CreateRoom(roomName);
-    }
-
-    public void JoinRoom(string roomName)
-    {
-        PhotonNetwork.JoinRoom(roomName);
-    }
-
-    public void changeScene(string sceneName)
-    {
-        PhotonNetwork.LoadLevel(sceneName);
+        else if (SceneManager.GetActiveScene().buildIndex == 2 && !hasJoinedRoom)
+        {
+            Debug.Log("joining room");
+            PhotonNetwork.ConnectUsingSettings();
+            hasJoinedRoom = true;
+        }
     }
 
     public void LeaveRoom()
@@ -61,14 +55,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     //Callback functions:
     public override void OnConnectedToMaster()
     {
-      //  if (PhotonNetwork.InRoom)
-      //  {
-      //      Debug.Log("Leave Room");
-      //      PhotonNetwork.LeaveRoom();
-      //  }
-
         Debug.Log("Connected to server");
         PhotonNetwork.JoinOrCreateRoom("urmom", null, null);
+        isConnectedToMaster = true;
     }
 
     public override void OnCreatedRoom()
@@ -80,7 +69,12 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         Debug.Log("Joined room successfully");
         PhotonNetwork.NickName = PlayerPrefs.GetString("userId") + "||" + PlayerPrefs.GetString("username");
-        
-        PhotonNetwork.Instantiate(playerPrefab.name, spawnPoint.position, Quaternion.identity);
+        PhotonNetwork.Instantiate("Player", spawnPoint, Quaternion.identity);
+    }
+
+    public override void OnLeftRoom()
+    {
+        base.OnLeftRoom();
+        PhotonNetwork.Disconnect();
     }
 }

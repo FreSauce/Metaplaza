@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.08031099, g: 0.09970581, b: 0.30111519, a: 1}
+  m_IndirectSpecularColor: {r: 0.08047724, g: 0.09986971, b: 0.3012642, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -30688,7 +30688,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 1223782444}
-  networkManager: {fileID: 0}
 --- !u!222 &1087609039
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -34965,7 +34964,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1232369504
 Transform:
   m_ObjectHideFlags: 0
@@ -34993,8 +34992,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2025c6007443c54ca6d295ef60a0aff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 5626770579014655686, guid: be0598d141a1f984d8b132aa76fcb03c, type: 3}
-  spawnPoint: {fileID: 1602927317}
+  isConnectedToMaster: 0
+  hasJoinedRoom: 0
 --- !u!1001 &1232646390
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46257,7 +46256,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1602927316}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.272, y: 8.96, z: 7.84}
+  m_LocalPosition: {x: -5, y: 5, z: 2.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
