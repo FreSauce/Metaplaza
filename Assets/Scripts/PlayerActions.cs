@@ -6,9 +6,13 @@ using System.Threading.Tasks;
 using System;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using AdvancedPeopleSystem;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 #endif
+
+
+
 
 public class PlayerActions : MonoBehaviourPunCallbacks
 {
@@ -24,6 +28,8 @@ public class PlayerActions : MonoBehaviourPunCallbacks
     private float MaxUseDistance = 1f;
     [SerializeField]
     private LayerMask UseLayers;
+    [SerializeField]
+    public GameObject playerMesh;
 
     private PhotonVoiceNetwork _voiceNetwork;
 
@@ -32,6 +38,12 @@ public class PlayerActions : MonoBehaviourPunCallbacks
     public CartMenu cartMenu;
 
     public PauseMenu pauseMenu;
+
+    private bool tryingOn;
+    private CharacterElementType tryingOnType;
+    private int tryingOnTypeInitialValue;
+    private CharacterCustomization characterCustomization;
+    private string characterType;
 
     private string addToCartEndpoint = "https://ancient-retreat-18243.herokuapp.com/api/cart/addToCart/";
     private string fetchCartEndpoint = "https://ancient-retreat-18243.herokuapp.com/api/cart/getCart";
@@ -50,7 +62,12 @@ public class PlayerActions : MonoBehaviourPunCallbacks
         pauseMenu = menuCanvas.GetComponent<PauseMenu>();
 
         InfoText = menuCanvas.GetComponentInChildren<TextMeshProUGUI>();
+
+        characterCustomization = playerMesh.GetComponent<CharacterCustomization>();
+
+        characterType = PlayerPrefs.GetString("characterType");
     }
+
 
     public void OnUse()
     {
@@ -85,9 +102,31 @@ public class PlayerActions : MonoBehaviourPunCallbacks
     public void OnVoiceToggle()
     {
         _voiceNetwork.PrimaryRecorder.TransmitEnabled = !_voiceNetwork.PrimaryRecorder.TransmitEnabled;
-        Debug.Log(_voiceNetwork.PrimaryRecorder.TransmitEnabled);
     }
 
+    public void OnTryOn(InputValue value)
+    {
+        if (tryingOn)
+        {
+            characterCustomization.SetElementByIndex(tryingOnType, tryingOnTypeInitialValue);
+            tryingOn = false;
+        }
+        else if (Physics.Raycast(Camera.position, Camera.forward, out RaycastHit hit, MaxUseDistance, UseLayers))
+        {
+            if (hit.collider.TryGetComponent<ShoppingItem>(out ShoppingItem shoppingItem))
+            {
+                if (hit.collider.TryGetComponent<TryOnItem>(out TryOnItem tryOnItem)&&tryOnItem.gender == characterType)
+                {
+                    tryingOn = true;
+                    tryingOnType = tryOnItem.type;
+                    tryingOnTypeInitialValue = characterCustomization.characterSelectedElements.GetSelectedIndex(tryingOnType);
+                    playerMesh.GetComponent<CharacterCustomization>().SetElementByIndex(tryOnItem.type, tryOnItem.elementIndex);
+                }
+            }
+        }
+
+
+    }
     public void OnCart()
     {
         // CODE TO DISPLAY THE CART
@@ -109,7 +148,7 @@ public class PlayerActions : MonoBehaviourPunCallbacks
 
     public void OnCloseMenu()
     {
-        
+
         if (!CartMenu.MenuOpen)
         {
             if (PauseMenu.GameIsPaused)
@@ -152,15 +191,23 @@ public class PlayerActions : MonoBehaviourPunCallbacks
                 }
                 else if (hit.collider.TryGetComponent<ShoppingItem>(out ShoppingItem shoppingItem))
                 {
-                    InfoText.text = "Select \"B\" to buy " + shoppingItem.name;
+                    if (hit.collider.TryGetComponent<TryOnItem>(out TryOnItem tryOnItem)&&tryOnItem.gender==characterType)
+                    {
+                        InfoText.text = "Select \"B\" to buy " + shoppingItem.name + " or hold \"T\" to try on";
+                    }
+                    else
+                    {
+                        InfoText.text = "Select \"B\" to buy " + shoppingItem.name;
+                    }
                 }
-
             }
             else
             {
                 InfoText.text = "";
             }
         }
+
+
     }
 
 
@@ -170,7 +217,7 @@ public class PlayerActions : MonoBehaviourPunCallbacks
         if (_id != "")
         {
             try
-            { 
+            {
                 UnityWebRequest request = UnityWebRequest.Get(addToCartEndpoint + _id);
                 request.SetRequestHeader("Authorization", "Bearer " + PlayerPrefs.GetString("token"));
                 Debug.Log(request.ToString());
@@ -188,7 +235,7 @@ public class PlayerActions : MonoBehaviourPunCallbacks
                     Debug.Log(request.error);
                 }
                 else
-                { 
+                {
                     Debug.Log("SUCCESSFULLY ADDED TO CART");
                 }
             }
@@ -233,7 +280,4 @@ public class PlayerActions : MonoBehaviourPunCallbacks
         }
     }
 }
-
-
-
 

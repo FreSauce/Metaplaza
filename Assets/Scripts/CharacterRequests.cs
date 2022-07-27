@@ -20,7 +20,7 @@ public class CharacterRequests : MonoBehaviour
         {
             if(response != null)
             {
-
+                PlayerPrefs.SetString("characterType", response.characterType);
                 if (response.characterType == "Male")
                 {
                     character.SwitchCharacterSettings(0);

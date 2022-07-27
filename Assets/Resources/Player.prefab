@@ -2483,6 +2483,7 @@ MonoBehaviour:
   UseLayers:
     serializedVersion: 2
     m_Bits: 1
+  playerMesh: {fileID: 2021676869220820723}
   menuCanvas: {fileID: 0}
   cartMenu: {fileID: 0}
   pauseMenu: {fileID: 0}
@@ -14381,7 +14382,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2070925441746177913, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
       propertyPath: m_Lens.m_SensorSize.x
-      value: 1.7781765
+      value: 2.003049
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2070925442191277753, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}

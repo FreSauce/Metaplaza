@@ -2025,6 +2025,7 @@ namespace AdvancedPeopleSystem
             else
                 EditorUtility.SetDirty(gameObject);
             EditorUtility.ClearProgressBar();
+            EditorUtility.ClearProgressBar();
 #endif
         }
 
