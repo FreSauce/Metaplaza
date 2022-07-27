@@ -1,5 +1,6 @@
 using UnityEngine;
 using Photon.Pun;
+using UnityEngine.SceneManagement;
 
 public class NetworkManager : MonoBehaviourPunCallbacks
 {
@@ -19,6 +20,15 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             instance = this;
             // keep instance even after changing scenes.
             // DontDestroyOnLoad(gameObject);
+        }
+    }
+
+    public void Update()
+    {
+        if(SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            Debug.Log("Leave Room");
+            PhotonNetwork.Disconnect();
         }
     }
 
@@ -42,10 +52,21 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         PhotonNetwork.LoadLevel(sceneName);
     }
 
+    public void LeaveRoom()
+    {
+        Debug.Log("Function is called");
+        PhotonNetwork.LeaveRoom();
+    }
 
     //Callback functions:
     public override void OnConnectedToMaster()
     {
+      //  if (PhotonNetwork.InRoom)
+      //  {
+      //      Debug.Log("Leave Room");
+      //      PhotonNetwork.LeaveRoom();
+      //  }
+
         Debug.Log("Connected to server");
         PhotonNetwork.JoinOrCreateRoom("urmom", null, null);
     }

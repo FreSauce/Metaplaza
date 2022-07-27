@@ -27,10 +27,9 @@ public class MainMenu : MonoBehaviour
     public void Start()
     {
         Login.Show(MainMenuCanvas);
-        Debug.Log(PlayerPrefs.GetString("token"));
+
         if (PlayerPrefs.HasKey("token"))
         {
-            Debug.Log(1);
             Login.Hide(LoginBtn);
             Login.Hide(SignupBtn);
             Login.Show(PlayBtn);
@@ -47,6 +46,26 @@ public class MainMenu : MonoBehaviour
         }
     }
 
+    public void Update()
+    {
+        Login.Show(MainMenuCanvas);
+        if (PlayerPrefs.HasKey("token"))
+        {
+            Login.Hide(LoginBtn);
+            Login.Hide(SignupBtn);
+            Login.Show(PlayBtn);
+            Login.Show(CharGenBtn);
+            Login.Show(logoutBtn);
+        }
+        else
+        {
+            Login.Show(LoginBtn);
+            Login.Show(SignupBtn);
+            Login.Hide(PlayBtn);
+            Login.Hide(CharGenBtn);
+            Login.Hide(logoutBtn);
+        }
+    }
     public void LoadLoginScene()
     {
         Login.Hide(SignupCanvas);
