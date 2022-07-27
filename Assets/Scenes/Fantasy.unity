@@ -239,6 +239,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4760832850285560, guid: 1b59bc54bfb6c974d9c25ef69101ccc4, type: 3}
   m_PrefabInstance: {fileID: 1759096}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3736749 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1486113781374998, guid: 0581f6d1471214647b6c96d06732acba, type: 3}
+  m_PrefabInstance: {fileID: 360453493}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4259646
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6217,6 +6222,40 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4717366737413330, guid: e53613200b843564f9d71f56c905cd6f, type: 3}
   m_PrefabInstance: {fileID: 245200258}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &245202400 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1670252666198536, guid: 6a8a507be42e41342a7518bc10a106a8, type: 3}
+  m_PrefabInstance: {fileID: 177473989}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &245202404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245202400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38be4f24f0aa61d48ae32ebc2a79afb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 3
+  elementIndex: 5
+  gender: Female
+--- !u!114 &245202405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245202400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdcce5ec64961aa4bb4f8f8928b10e60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 
+  name: Heels
 --- !u!1001 &248642990
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9565,6 +9604,35 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4674267412427720, guid: 0581f6d1471214647b6c96d06732acba, type: 3}
   m_PrefabInstance: {fileID: 360453493}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &360453498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3736749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdcce5ec64961aa4bb4f8f8928b10e60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 
+  name: 
+--- !u!114 &360453499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3736749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38be4f24f0aa61d48ae32ebc2a79afb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 3
+  elementIndex: 9
+  gender: Female
 --- !u!1001 &364337741
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26366,6 +26434,40 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4876696868988380, guid: e850ef838f3227d479aa2f6da2b373a9, type: 3}
   m_PrefabInstance: {fileID: 929601033}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &934059303 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1615076109837096, guid: 5d248ede68cde554cad51576fb560ea5, type: 3}
+  m_PrefabInstance: {fileID: 732937059}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &934059307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 934059303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdcce5ec64961aa4bb4f8f8928b10e60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 
+  name: Pants
+--- !u!114 &934059308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 934059303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38be4f24f0aa61d48ae32ebc2a79afb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 2
+  elementIndex: 9
+  gender: Female
 --- !u!1001 &934186894
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30860,6 +30962,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4431953507638518, guid: 1ee70e60011952442a3907c95cc2beb7, type: 3}
   m_PrefabInstance: {fileID: 1094617435}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1095938424 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1851471286564318, guid: 48cf013d62b6e42428f6efedc5494cf7, type: 3}
+  m_PrefabInstance: {fileID: 1621528679}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1096867027
 PrefabInstance:
@@ -46962,6 +47069,35 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4133263361018608, guid: 48cf013d62b6e42428f6efedc5494cf7, type: 3}
   m_PrefabInstance: {fileID: 1621528679}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1621528684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1095938424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38be4f24f0aa61d48ae32ebc2a79afb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 1
+  elementIndex: 7
+  gender: Female
+--- !u!114 &1621528685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1095938424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdcce5ec64961aa4bb4f8f8928b10e60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 
+  name: Black shirt
 --- !u!1001 &1622389452
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -54561,7 +54697,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 
-  name: 
+  name: Shirt
+--- !u!114 &1905828986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1905828978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38be4f24f0aa61d48ae32ebc2a79afb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 1
+  elementIndex: 2
+  gender: Female
 --- !u!1001 &1905979305
 PrefabInstance:
   m_ObjectHideFlags: 0
