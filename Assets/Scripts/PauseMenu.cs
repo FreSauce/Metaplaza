@@ -28,8 +28,8 @@ public class PauseMenu : MonoBehaviour
 
     public void LoadMenu()
     {
-        Debug.Log(SceneManager.GetActiveScene().buildIndex);
-        //networkManager.LeaveRoom();
+        pauseMenuUI.SetActive(false);
+        GameIsPaused = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex -2);
         Debug.Log(SceneManager.GetActiveScene().buildIndex);
     }
