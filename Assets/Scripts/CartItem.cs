@@ -21,7 +21,7 @@ public class CartItem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     public void setQuantity(int quantity)
@@ -37,7 +37,7 @@ public class CartItem : MonoBehaviour
     public async void delItem()
     {
         Debug.Log(this.quantity.text);
-        if (getQuantity()==1)
+        if (getQuantity() == 1)
         {
             Destroy(gameObject);
             if (id != "")
@@ -74,7 +74,7 @@ public class CartItem : MonoBehaviour
         }
         else
         {
-            setQuantity(getQuantity()-1);
+            setQuantity(getQuantity() - 1);
             if (id != "")
             {
                 try
@@ -113,7 +113,7 @@ public class CartItem : MonoBehaviour
     {
         this.id = item._id;
         this.name.text = item.name;
-        this.price.text ="$"+item.price.Remove(0,1);
+        this.price.text = "$" + item.price.Remove(0, 1);
         setQuantity(item.quantity);
         await DownloadImage(item.img);
     }
@@ -121,7 +121,7 @@ public class CartItem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private async Task DownloadImage(string MediaUrl)
@@ -133,7 +133,7 @@ public class CartItem : MonoBehaviour
             await Task.Yield();
         }
         Debug.Log(request.downloadHandler);
-        if (request.isNetworkError || request.isHttpError)
+        if (request.result != UnityWebRequest.Result.Success)
             Debug.Log(request.error);
         else
             this.img.texture = ((DownloadHandlerTexture)request.downloadHandler).texture;

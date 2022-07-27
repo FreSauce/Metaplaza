@@ -6,6 +6,7 @@ using Photon.Voice.PUN;
 using System.Collections;
 using Cinemachine;
 using TMPro;
+using AdvancedPeopleSystem;
 #endif
 
 /* Note: animations are called via the controller for both the character and capsule using animator null checks
@@ -115,6 +116,7 @@ namespace StarterAssets
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
         private PlayerInput _playerInput;
 #endif
+        private CharacterCustomization characterData;
         private CharacterController _controller;
         private StarterAssetsInputs _input;
 
