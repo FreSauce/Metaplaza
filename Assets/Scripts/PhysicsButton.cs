@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using System;
 
 public class PhysicsButton : MonoBehaviour
 {
@@ -27,8 +28,9 @@ public class PhysicsButton : MonoBehaviour
         {
             Pressed();
         }
-        if (!_isPressed && GetValue() - threshold <= 0)
+        if (_isPressed && GetValue() - threshold <= 0)
         {
+            
             Released();
         }
     }
@@ -36,7 +38,6 @@ public class PhysicsButton : MonoBehaviour
     public float GetValue()
     {
         var value = Vector3.Distance(_startPos, transform.localPosition) / _joint.linearLimit.limit;
-
         if(Mathf.Abs(value) < deadZone)
         {
             value = 0;
