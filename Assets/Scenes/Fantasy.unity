@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.08047724, g: 0.09986971, b: 0.3012642, a: 1}
+  m_IndirectSpecularColor: {r: 0.08031949, g: 0.099714234, b: 0.30112278, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1072,6 +1072,26 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4990777902567206, guid: 5d248ede68cde554cad51576fb560ea5, type: 3}
   m_PrefabInstance: {fileID: 20451970}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &20451972 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1615076109837096, guid: 5d248ede68cde554cad51576fb560ea5, type: 3}
+  m_PrefabInstance: {fileID: 20451970}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &20451973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 20451972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdcce5ec64961aa4bb4f8f8928b10e60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 62e2ede5c512299061a987c6
+  name: Flying Machine Women Blue Wide Leg High-Rise Slash Knee Heavy Fade Stretchable
+    Jeans
 --- !u!1001 &21089743
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2600,6 +2620,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4634214982971796, guid: 941cf9a72fd230c4da4541ffdb359199, type: 3}
   m_PrefabInstance: {fileID: 60953433}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &60953435 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1883489467559108, guid: 941cf9a72fd230c4da4541ffdb359199, type: 3}
+  m_PrefabInstance: {fileID: 60953433}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &60953436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 60953435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5e94cd90eea7714bb1b45bfa4d43cc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flag: myntra
 --- !u!1001 &61694606
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3726,6 +3764,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4346934039742516, guid: 1fbe3a75d0222a641a7e01b08978a03c, type: 3}
   m_PrefabInstance: {fileID: 97576161}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &97576163 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1955582750978082, guid: 1fbe3a75d0222a641a7e01b08978a03c, type: 3}
+  m_PrefabInstance: {fileID: 97576161}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &97576164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 97576163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdcce5ec64961aa4bb4f8f8928b10e60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 62e2ec63c512299061a987c2
+  name: Golden Peacock Men Coffee Brown Faux Leather Cowboy Sun Hat
 --- !u!1001 &99556883
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11689,6 +11746,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4042705819524836, guid: fd1c00f04e1805845b2a06122e2dbc17, type: 3}
   m_PrefabInstance: {fileID: 333897114}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &333897116 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1403676855529344, guid: fd1c00f04e1805845b2a06122e2dbc17, type: 3}
+  m_PrefabInstance: {fileID: 333897114}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &333897117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 333897116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdcce5ec64961aa4bb4f8f8928b10e60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 62e2ecc2c512299061a987c3
+  name: Unisex Yellow Solid 550 GSM Hand Towel
 --- !u!1001 &335260625
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17406,6 +17482,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4879716163863080, guid: fff8fd0b5b24e6244a6f06544e494813, type: 3}
   m_PrefabInstance: {fileID: 471433840}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &471433842 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1136157721040858, guid: fff8fd0b5b24e6244a6f06544e494813, type: 3}
+  m_PrefabInstance: {fileID: 471433840}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &471433843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 471433842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdcce5ec64961aa4bb4f8f8928b10e60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 62e2eeb3c512299061a987c8
+  name: Ducati Men Red & White Thread Work Sneakers
 --- !u!1001 &473848953
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23012,6 +23107,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4828193820150584, guid: a7fd7e20122bedc4dbd578221735f233, type: 3}
   m_PrefabInstance: {fileID: 601509284}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &601509286 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1139605358176830, guid: a7fd7e20122bedc4dbd578221735f233, type: 3}
+  m_PrefabInstance: {fileID: 601509284}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &601509287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 601509286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdcce5ec64961aa4bb4f8f8928b10e60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 62e2ee44c512299061a987c7
+  name: Mr Bowerbird Men Brown Solid Pullover Sweater
 --- !u!1001 &602194526
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43995,6 +44109,14 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
+    - target: {fileID: 4322644788036329369, guid: 62e431b924c9f564c93f33a673d6e085, type: 3}
+      propertyPath: id
+      value: 62e2ed49c512299061a987c4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4322644788036329369, guid: 62e431b924c9f564c93f33a673d6e085, type: 3}
+      propertyPath: name
+      value: Honey by Pantaloons Violet Blouson Top
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62e431b924c9f564c93f33a673d6e085, type: 3}
 --- !u!4 &1145811640 stripped
@@ -44355,7 +44477,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5218471300127536666, guid: 70598555f1a5dee4ea47b61b4ee8affb, type: 3}
       propertyPath: name
-      value: 
+      value: Louis Philippe
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70598555f1a5dee4ea47b61b4ee8affb, type: 3}
@@ -73064,8 +73186,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdcce5ec64961aa4bb4f8f8928b10e60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 
-  name: Glasses
+  id: 62e2f19fc512299061a987c9
+  name: Unisex Black Lens Wayfarer Sunglasses
 --- !u!114 &1872601770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76341,6 +76463,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4133263361018608, guid: 48cf013d62b6e42428f6efedc5494cf7, type: 3}
   m_PrefabInstance: {fileID: 1958067306}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1958067308 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1851471286564318, guid: 48cf013d62b6e42428f6efedc5494cf7, type: 3}
+  m_PrefabInstance: {fileID: 1958067306}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1958067309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1958067308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdcce5ec64961aa4bb4f8f8928b10e60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 62e2ed94c512299061a987c5
+  name: STREET 9 Yellow Self Design Pure Cotton Top
 --- !u!1 &1958967936 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7866996722874954428, guid: 7cfe79811670f444d825b9a51b5687c8, type: 3}
