@@ -225,6 +225,8 @@ GameObject:
   - component: {fileID: 110310879889810838}
   - component: {fileID: 110310879889810836}
   - component: {fileID: 110310879889810839}
+  - component: {fileID: 9091682788535953711}
+  - component: {fileID: 5925416789337091265}
   m_Layer: 0
   m_Name: Clicker
   m_TagString: Untagged
@@ -275,7 +277,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 25b100bbf855e384fb5f2b07780af9d7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -297,6 +299,34 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &9091682788535953711
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110310879889810841}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0000001, y: 4, z: 1.0000002}
+  m_Center: {x: 0, y: 0.69, z: 0}
+--- !u!114 &5925416789337091265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110310879889810841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58c20ea6a2ab1584a80e4a49a539ef01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 110310879273331448}
+  multiplier: 75
+  isOnButton: 0
 --- !u!1 &110310880305509088
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,7 +390,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31c6a977fce9bd94f9a1c09ed25c5072, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

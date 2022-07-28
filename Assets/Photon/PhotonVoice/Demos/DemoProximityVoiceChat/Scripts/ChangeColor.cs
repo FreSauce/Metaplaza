@@ -18,8 +18,19 @@ public class ChangeColor : MonoBehaviour
         }
     }
 
+    public void ChangeColors()
+    {
+        this.photonView = this.GetComponent<PhotonView>();
+        if (this.photonView.IsMine)
+        {
+            Color random = Random.ColorHSV();
+            this.photonView.RPC("ChangeColour", RpcTarget.AllBuffered, new Vector3(random.r, random.g, random.b));
+        Debug.Log(PlayerPrefs.GetString("token"));
+        }
+    }
+
     [PunRPC]
-    private void ChangeColour(Vector3 randomColor)
+    public void ChangeColour(Vector3 randomColor)
     {
         Renderer renderer = this.GetComponent<Renderer>();
         renderer.material.SetColor("_Color", new Color(randomColor.x, randomColor.y, randomColor.z));
