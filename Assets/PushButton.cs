@@ -19,7 +19,7 @@ public class PushButton : MonoBehaviour
     {
         if(isOnButton)
         {
-            button.AddForce(new Vector3(0, -1, 0) * multiplier * Time.deltaTime);
+            button.AddForce(new Vector3(0, -1, 0) * multiplier);
         }
     }
 

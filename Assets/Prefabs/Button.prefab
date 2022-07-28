@@ -208,6 +208,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   threshold: 0.1
   deadZone: 0.025
+  pressedSound: {fileID: 0}
   onPressed:
     m_PersistentCalls:
       m_Calls: []
@@ -325,7 +326,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 110310879273331448}
-  multiplier: 75
+  multiplier: 150
   isOnButton: 0
 --- !u!1 &110310880305509088
 GameObject:

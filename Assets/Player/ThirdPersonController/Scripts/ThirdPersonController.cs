@@ -31,7 +31,7 @@ namespace StarterAssets
         [Range(0.0f, 0.3f)]
         public float RotationSmoothTime = 0.12f;
 
-        public CinemachineFreeLook cineMachine;
+        public CinemachineVirtualCamera cineMachine;
 
         [Tooltip("Acceleration and deceleration")]
         public float SpeedChangeRate = 10.0f;
