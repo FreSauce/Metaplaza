@@ -7,6 +7,7 @@ using System;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 using AdvancedPeopleSystem;
+using System.Collections;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 #endif
@@ -37,6 +38,8 @@ public class PlayerActions : MonoBehaviourPunCallbacks
 
     public CartMenu cartMenu;
 
+    public CheckoutCanvas checkout;
+
     public PauseMenu pauseMenu;
 
     private bool tryingOn;
@@ -60,6 +63,8 @@ public class PlayerActions : MonoBehaviourPunCallbacks
         cartMenu = menuCanvas.GetComponent<CartMenu>();
 
         pauseMenu = menuCanvas.GetComponent<PauseMenu>();
+
+        checkout = menuCanvas.GetComponent<CheckoutCanvas>();
 
         InfoText = menuCanvas.GetComponentInChildren<TextMeshProUGUI>();
 
@@ -95,6 +100,18 @@ public class PlayerActions : MonoBehaviourPunCallbacks
             {
                 // CODE TO BUY THE PRODUCT
                 addToCart(shoppingItem.id);
+            }
+        }
+    }
+
+    public void OnCheckout()
+    {
+        if (Physics.Raycast(Camera.position, Camera.forward, out RaycastHit hit, MaxUseDistance, UseLayers))
+        {
+            if (hit.collider.TryGetComponent<CheckoutManager>(out CheckoutManager cm))
+            {
+                cm.checkout();
+                StartCoroutine(checkout.Blink());
             }
         }
     }
@@ -199,6 +216,9 @@ public class PlayerActions : MonoBehaviourPunCallbacks
                     {
                         InfoText.text = "Select \"B\" to buy " + shoppingItem.name;
                     }
+                }else if(hit.collider.TryGetComponent<CheckoutManager>(out CheckoutManager cm))
+                {
+                    InfoText.text = "Click \"C\" to checkout this store";
                 }
             }
             else
@@ -270,14 +290,23 @@ public class PlayerActions : MonoBehaviourPunCallbacks
             {
                 Debug.Log(request.downloadHandler.text);
                 CartResponse response = JsonUtility.FromJson<CartResponse>(request.downloadHandler.text);
+                if (response.data.Length == 0)
+                {
+                    Debug.Log("empty");
+                    cartMenu.clearItems();
+                }
+                else
+                {
                 Debug.Log(response.data[0].name);
                 cartMenu.setItems(response.data);
+                }
             }
         }
         catch (Exception e)
         {
             Debug.Log(e);
         }
+        PlayerPrefs.GetString("token");
     }
 }
 

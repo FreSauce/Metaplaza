@@ -2487,6 +2487,7 @@ MonoBehaviour:
   playerMesh: {fileID: 2021676869220820723}
   menuCanvas: {fileID: 0}
   cartMenu: {fileID: 0}
+  checkout: {fileID: 0}
   pauseMenu: {fileID: 0}
 --- !u!114 &5626770579014655686
 MonoBehaviour:

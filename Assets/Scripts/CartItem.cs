@@ -17,7 +17,7 @@ public class CartItem : MonoBehaviour
     public Button del;
 
     private string decCartEndPoint = "https://ancient-retreat-18243.herokuapp.com/api/cart/decQuantity/";
-    private string delFromCartEndPoint = "https://ancient-retreat-18243.herokuapp.com/api/cart//removeFromCart/";
+    private string delFromCartEndPoint = "https://ancient-retreat-18243.herokuapp.com/api/cart/removeFromCart/";
     // Start is called before the first frame update
     void Start()
     {

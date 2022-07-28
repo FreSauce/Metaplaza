@@ -35,7 +35,7 @@ public class CartMenu : MonoBehaviour
         SetCursorState(true);
     }
 
-    public async void setItems(ICartItem[] items)
+    public void setItems(ICartItem[] items)
     {
         foreach(ICartItem item in items)
         {
@@ -60,6 +60,15 @@ public class CartMenu : MonoBehaviour
             }
         }
 
+    }
+
+    public void clearItems()
+    {
+        foreach(Transform tr in cartMenuContent.transform)
+        {
+            Destroy(tr.gameObject);
+        }
+        cartItems.Clear();
     }
 }
 

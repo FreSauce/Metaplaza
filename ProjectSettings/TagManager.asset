@@ -11,6 +11,7 @@ TagManager:
   - CollisionObjects
   - MainPlayer
   - NetworkManager
+  - CheckoutMsg
   layers:
   - Default
   - TransparentFX
