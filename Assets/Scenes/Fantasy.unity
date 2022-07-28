@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.08031099, g: 0.09970581, b: 0.30111519, a: 1}
+  m_IndirectSpecularColor: {r: 0.080315106, g: 0.09971139, b: 0.30111107, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8325,7 +8325,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdcce5ec64961aa4bb4f8f8928b10e60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 
+  id: 62e284fe9c9c71c754831e29
   name: Heels
 --- !u!1001 &247263637
 PrefabInstance:
@@ -12971,7 +12971,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdcce5ec64961aa4bb4f8f8928b10e60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 
+  id: 62e284b49c9c71c754831e28
   name: 
 --- !u!114 &360453499
 MonoBehaviour:
@@ -24671,32 +24671,14 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: fb5a8f1b9970d0f41a73e9afcbe48579, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7298049653696019104, guid: 92fe0819e8be9bf4e99c936c348f7e13, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 92fe0819e8be9bf4e99c936c348f7e13, type: 3}
 --- !u!4 &662838359 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4394509077010890, guid: 92fe0819e8be9bf4e99c936c348f7e13, type: 3}
   m_PrefabInstance: {fileID: 662838358}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &662838360 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1739848140417770, guid: 92fe0819e8be9bf4e99c936c348f7e13, type: 3}
-  m_PrefabInstance: {fileID: 662838358}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &662838361
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 662838360}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdcce5ec64961aa4bb4f8f8928b10e60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 
-  name: 
 --- !u!1001 &666016634
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29283,25 +29265,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4717366737413330, guid: e53613200b843564f9d71f56c905cd6f, type: 3}
   m_PrefabInstance: {fileID: 784445394}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &784445396 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1643548959420564, guid: e53613200b843564f9d71f56c905cd6f, type: 3}
-  m_PrefabInstance: {fileID: 784445394}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &784445397
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 784445396}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdcce5ec64961aa4bb4f8f8928b10e60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 
-  name: 
 --- !u!1001 &786506689
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35615,7 +35578,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdcce5ec64961aa4bb4f8f8928b10e60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 
+  id: 62e283bf9c9c71c754831e27
   name: Pants
 --- !u!114 &934059308
 MonoBehaviour:
@@ -43845,8 +43808,12 @@ PrefabInstance:
       value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5218471300127536666, guid: 70598555f1a5dee4ea47b61b4ee8affb, type: 3}
+      propertyPath: id
+      value: 62e27fad9c9c71c754831e22
+      objectReference: {fileID: 0}
+    - target: {fileID: 5218471300127536666, guid: 70598555f1a5dee4ea47b61b4ee8affb, type: 3}
       propertyPath: name
-      value: Shirt
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70598555f1a5dee4ea47b61b4ee8affb, type: 3}
@@ -53804,7 +53771,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdcce5ec64961aa4bb4f8f8928b10e60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 
+  id: 62e285559c9c71c754831e2a
   name: Hat
 --- !u!1001 &1402010091
 PrefabInstance:
@@ -62626,7 +62593,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdcce5ec64961aa4bb4f8f8928b10e60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 
+  id: 62e283579c9c71c754831e26
   name: Black shirt
 --- !u!1001 &1622389452
 PrefabInstance:
@@ -73299,7 +73266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdcce5ec64961aa4bb4f8f8928b10e60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 
+  id: 62e282f89c9c71c754831e25
   name: Shirt
 --- !u!1 &1906775889
 GameObject:
@@ -79171,7 +79138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdcce5ec64961aa4bb4f8f8928b10e60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 
+  id: 62e281429c9c71c754831e24
   name: Jacket
 --- !u!114 &2052803487
 MonoBehaviour:
@@ -80662,8 +80629,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdcce5ec64961aa4bb4f8f8928b10e60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 
-  name: Jacket
+  id: 62e2808b9c9c71c754831e23
+  name: 
 --- !u!1001 &2092804936
 PrefabInstance:
   m_ObjectHideFlags: 0
