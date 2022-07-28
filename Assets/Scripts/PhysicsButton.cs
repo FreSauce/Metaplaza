@@ -12,6 +12,7 @@ public class PhysicsButton : MonoBehaviour
     private Vector3 _startPos;
     private ConfigurableJoint _joint;
 
+    public AudioSource pressedSound;
     public UnityEvent onPressed, onReleased;
 
 
@@ -48,6 +49,7 @@ public class PhysicsButton : MonoBehaviour
     private void Pressed()
     {
         _isPressed = true;
+        pressedSound.Play();
         onPressed.Invoke();
         Debug.Log("Pressed");
     }
