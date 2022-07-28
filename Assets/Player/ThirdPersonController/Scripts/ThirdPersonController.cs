@@ -31,7 +31,7 @@ namespace StarterAssets
         [Range(0.0f, 0.3f)]
         public float RotationSmoothTime = 0.12f;
 
-        public CinemachineVirtualCamera cineMachine;
+        public CinemachineFreeLook cineMachine;
 
         [Tooltip("Acceleration and deceleration")]
         public float SpeedChangeRate = 10.0f;
@@ -154,12 +154,6 @@ namespace StarterAssets
             string userId = photonView.Owner.NickName.Split("||")[0];
             Debug.Log(userId);
             characterRequests.InitializeCharacter(userId);
-        }
-
-        [PunRPC]
-        void TP1(Vector3 pos)
-        {
-            transform.position = (pos);
         }
 
         private void Start()
