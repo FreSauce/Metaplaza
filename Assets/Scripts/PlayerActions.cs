@@ -29,6 +29,8 @@ public class PlayerActions : MonoBehaviourPunCallbacks
     private LayerMask UseLayers;
     [SerializeField]
     public GameObject playerMesh;
+    [SerializeField]
+    public GameObject voiceImg;
 
     private float MaxUseDistance = 5f;
 
@@ -119,6 +121,14 @@ public class PlayerActions : MonoBehaviourPunCallbacks
     public void OnVoiceToggle()
     {
         _voiceNetwork.PrimaryRecorder.TransmitEnabled = !_voiceNetwork.PrimaryRecorder.TransmitEnabled;
+        if (_voiceNetwork.PrimaryRecorder.TransmitEnabled)
+        {
+            voiceImg.SetActive(true);
+        }
+        else
+        {
+            voiceImg.SetActive(false);
+        }
     }
 
     public void OnTryOn(InputValue value)
