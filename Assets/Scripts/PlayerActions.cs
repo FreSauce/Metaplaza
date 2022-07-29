@@ -26,11 +26,11 @@ public class PlayerActions : MonoBehaviourPunCallbacks
     [SerializeField]
     private Transform Camera;
     [SerializeField]
-    private float MaxUseDistance = 1f;
-    [SerializeField]
     private LayerMask UseLayers;
     [SerializeField]
     public GameObject playerMesh;
+
+    private float MaxUseDistance = 5f;
 
     private PhotonVoiceNetwork _voiceNetwork;
 
@@ -42,7 +42,7 @@ public class PlayerActions : MonoBehaviourPunCallbacks
 
     public PauseMenu pauseMenu;
 
-    private bool tryingOn;
+    private bool tryingOn=false;
     private CharacterElementType tryingOnType;
     private int tryingOnTypeInitialValue;
     private CharacterCustomization characterCustomization;
@@ -129,7 +129,7 @@ public class PlayerActions : MonoBehaviourPunCallbacks
             tryingOn = false;
         }
         else if (Physics.Raycast(Camera.position, Camera.forward, out RaycastHit hit, MaxUseDistance, UseLayers))
-        {
+        { 
             if (hit.collider.TryGetComponent<ShoppingItem>(out ShoppingItem shoppingItem))
             {
                 if (hit.collider.TryGetComponent<TryOnItem>(out TryOnItem tryOnItem)&&tryOnItem.gender == characterType)
@@ -216,7 +216,8 @@ public class PlayerActions : MonoBehaviourPunCallbacks
                     {
                         InfoText.text = "Select \"B\" to buy " + shoppingItem.name;
                     }
-                }else if(hit.collider.TryGetComponent<CheckoutManager>(out CheckoutManager cm))
+                }
+                else if(hit.collider.TryGetComponent<CheckoutManager>(out CheckoutManager cm))
                 {
                     InfoText.text = "Click \"C\" to checkout this store";
                 }
