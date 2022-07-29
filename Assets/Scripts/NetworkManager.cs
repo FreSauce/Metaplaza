@@ -7,7 +7,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public static NetworkManager instance;
     public bool isConnectedToMaster = false;
     public bool hasJoinedRoom = false;
-    public static Vector3 spawnPoint = new Vector3(-5, 5, 2.2f);
+    public static Vector3 spawnPoint = new Vector3(0, 2, 0);
 
     private void Awake()
     {
@@ -26,10 +26,10 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public void Start()
     {
-        SceneManager.activeSceneChanged += handleSceneChange;
+        handleSceneChange();
     }
 
-    public void handleSceneChange(Scene past, Scene current)
+    public void handleSceneChange()
     {
         Debug.Log(SceneManager.GetActiveScene().buildIndex);
         if (SceneManager.GetActiveScene().buildIndex == 0 && hasJoinedRoom)
@@ -69,7 +69,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         Debug.Log("Joined room successfully");
         PhotonNetwork.NickName = PlayerPrefs.GetString("userId") + "||" + PlayerPrefs.GetString("username");
-        PhotonNetwork.Instantiate("Player", spawnPoint, Quaternion.identity);
+        PhotonNetwork.Instantiate("VRPlayer", spawnPoint, Quaternion.identity);
     }
 
     public override void OnLeftRoom()

@@ -12,6 +12,7 @@ TagManager:
   - MainPlayer
   - NetworkManager
   - CheckoutMsg
+  - VRCamera
   layers:
   - Default
   - TransparentFX
