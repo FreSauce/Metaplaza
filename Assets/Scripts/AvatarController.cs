@@ -1,4 +1,5 @@
 using UnityEngine;
+using Photon.Pun;
 
 [System.Serializable]
 public class MapTransform
@@ -14,7 +15,7 @@ public class MapTransform
         IKTarget.rotation = vrTarget.rotation * Quaternion.Euler(trackingRotationOffset);
     }
 }
-public class AvatarController : MonoBehaviour
+public class AvatarController : MonoBehaviourPun
 {
     [SerializeField] private MapTransform head;
     [SerializeField] private MapTransform leftHand;
@@ -31,20 +32,28 @@ public class AvatarController : MonoBehaviour
 
     private void Awake()
     {
+        if (photonView.IsMine)
+        {
         _VRCamera = GameObject.FindGameObjectWithTag("VRCamera");
         Transform cameraOffset = _VRCamera.transform.Find("Camera Offset");
         Debug.Log(cameraOffset);
         head.vrTarget = cameraOffset.Find("Main Camera"); ;
         leftHand.vrTarget = cameraOffset.Find("LeftHand Controller"); ;
-        rightHand.vrTarget = cameraOffset.Find("RightHand Controller"); ;
+        rightHand.vrTarget = cameraOffset.Find("RightHand Controller");
+        }
+        
     }
 
     void LateUpdate()
     {
+        if (photonView.IsMine)
+        {
+
         transform.position = IKHead.position + headBodyOffset;
         transform.forward = Vector3.Lerp(transform.forward, Vector3.ProjectOnPlane(IKHead.forward, Vector3.up).normalized, Time.deltaTime * turnSmoothness); ;
         head.MapVRAvatar();
         leftHand.MapVRAvatar();
         rightHand.MapVRAvatar();
+        }
     }
 }

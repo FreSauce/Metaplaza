@@ -26,10 +26,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public void Start()
     {
-        handleSceneChange();
+        SceneManager.activeSceneChanged += handleSceneChange;
+        //handleSceneChange();
     }
 
-    public void handleSceneChange()
+    public void handleSceneChange(Scene past, Scene current)
     {
         Debug.Log(SceneManager.GetActiveScene().buildIndex);
         if (SceneManager.GetActiveScene().buildIndex == 0 && hasJoinedRoom)
@@ -69,7 +70,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         Debug.Log("Joined room successfully");
         PhotonNetwork.NickName = PlayerPrefs.GetString("userId") + "||" + PlayerPrefs.GetString("username");
-        PhotonNetwork.Instantiate("VRPlayer", spawnPoint, Quaternion.identity);
+        PhotonNetwork.Instantiate("Player", spawnPoint, Quaternion.identity);
     }
 
     public override void OnLeftRoom()
