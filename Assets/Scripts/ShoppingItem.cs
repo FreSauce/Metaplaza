@@ -52,6 +52,7 @@ public class ShoppingItem : MonoBehaviour
                     this.img = response.img;
                     this.link = response.link;
                 }
+                request.Dispose();
             }
             catch (Exception e)
             {

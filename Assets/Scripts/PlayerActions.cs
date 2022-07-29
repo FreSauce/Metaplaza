@@ -8,6 +8,7 @@ using UnityEngine.Networking;
 using UnityEngine.UI;
 using AdvancedPeopleSystem;
 using System.Collections;
+using System.Linq;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 #endif
@@ -42,6 +43,8 @@ public class PlayerActions : MonoBehaviourPunCallbacks
 
     public CheckoutCanvas checkout;
 
+    public AddedToCart adc;
+
     public PauseMenu pauseMenu;
 
     private bool tryingOn=false;
@@ -67,6 +70,8 @@ public class PlayerActions : MonoBehaviourPunCallbacks
         pauseMenu = menuCanvas.GetComponent<PauseMenu>();
 
         checkout = menuCanvas.GetComponent<CheckoutCanvas>();
+
+        adc = menuCanvas.GetComponent<AddedToCart>();
 
         InfoText = menuCanvas.GetComponentInChildren<TextMeshProUGUI>();
 
@@ -100,6 +105,7 @@ public class PlayerActions : MonoBehaviourPunCallbacks
         {
             if (hit.collider.TryGetComponent<ShoppingItem>(out ShoppingItem shoppingItem))
             {
+                StartCoroutine(adc.Blink());
                 // CODE TO BUY THE PRODUCT
                 addToCart(shoppingItem.id);
             }
@@ -113,6 +119,7 @@ public class PlayerActions : MonoBehaviourPunCallbacks
             if (hit.collider.TryGetComponent<CheckoutManager>(out CheckoutManager cm))
             {
                 cm.checkout();
+                cartMenu.clearItems(cm.flag);
                 StartCoroutine(checkout.Blink());
             }
         }
@@ -304,7 +311,7 @@ public class PlayerActions : MonoBehaviourPunCallbacks
                 if (response.data.Length == 0)
                 {
                     Debug.Log("empty");
-                    cartMenu.clearItems();
+                    cartMenu.clearAllItems();
                 }
                 else
                 {
@@ -317,7 +324,6 @@ public class PlayerActions : MonoBehaviourPunCallbacks
         {
             Debug.Log(e);
         }
-        PlayerPrefs.GetString("token");
     }
 }
 

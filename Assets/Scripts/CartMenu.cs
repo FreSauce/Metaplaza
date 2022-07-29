@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections;
 using UnityEngine.Networking;
+using System.Linq;
 
 public class CartMenu : MonoBehaviour
 {
@@ -62,9 +63,24 @@ public class CartMenu : MonoBehaviour
 
     }
 
-    public void clearItems()
+    public void clearItems(string flag)
     {
-        foreach(Transform tr in cartMenuContent.transform)
+        int num=-1;
+        this.cartItems = this.cartItems.Where(item =>
+        {
+            num++;
+            if (item.link.Contains(flag))
+            {
+                Destroy(cartMenuContent.transform.GetChild(num).gameObject);
+                return false;
+            }
+            return true;
+        }).ToList();
+    }
+
+    public void clearAllItems()
+    {
+        foreach (Transform tr in cartMenuContent.transform)
         {
             Destroy(tr.gameObject);
         }

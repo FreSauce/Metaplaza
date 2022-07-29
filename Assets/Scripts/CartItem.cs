@@ -65,6 +65,7 @@ public class CartItem : MonoBehaviour
                     {
                         Debug.Log("SUCCESSFULLY Deleted FROM CART");
                     }
+                    request.Dispose();
                 }
                 catch (Exception e)
                 {
@@ -100,6 +101,7 @@ public class CartItem : MonoBehaviour
                     {
                         Debug.Log("SUCCESSFULLY DECREASED FROM CART");
                     }
+                    request.Dispose();
                 }
                 catch (Exception e)
                 {
@@ -137,5 +139,6 @@ public class CartItem : MonoBehaviour
             Debug.Log(request.error);
         else
             this.img.texture = ((DownloadHandlerTexture)request.downloadHandler).texture;
+        request.Dispose();
     }
 }

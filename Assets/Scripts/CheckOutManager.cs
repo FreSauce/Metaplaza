@@ -14,9 +14,6 @@ public class CheckoutManager : MonoBehaviour
     public void checkout()
     {
         Debug.Log(this.flag);
-        GameObject canvas = GameObject.FindGameObjectWithTag("MenuCanvas");
-        CartMenu cm = canvas.GetComponent<CartMenu>();
-        Debug.Log(cm.cartItems.ToArray().ToString());
         _checkout();
     }
 
@@ -46,6 +43,7 @@ public class CheckoutManager : MonoBehaviour
             {
                 Debug.Log("SUCCESSFULLY CHECKED OUT");
             }
+            request.Dispose();
         }
         catch (Exception e)
         {
