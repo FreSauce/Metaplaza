@@ -14,6 +14,13 @@ public class MainMenu : MonoBehaviour
     public GameObject logoutBtn;
     public GameObject SignupBtn;
     public GameObject LoginBtn;
+    public GameObject QuitBtn;
+    public TextMeshProUGUI loginBtnText;
+    public TextMeshProUGUI signupBtnText;
+    public TextMeshProUGUI logoutBtnText;
+    public TextMeshProUGUI playBtnText;
+    public TextMeshProUGUI chargenText;
+    public TextMeshProUGUI quitText;
     public void Show(TextMeshProUGUI obj)
     {
         obj.enabled = true;
@@ -27,7 +34,7 @@ public class MainMenu : MonoBehaviour
     public void Start()
     {
         Login.Show(MainMenuCanvas);
-
+        Login.Show(QuitBtn);
         if (PlayerPrefs.HasKey("token"))
         {
             Login.Hide(LoginBtn);
@@ -68,18 +75,27 @@ public class MainMenu : MonoBehaviour
     }
     public void LoadLoginScene()
     {
-        Login.Hide(SignupCanvas);
         Login.Show(loginCanvas);
-        Login.Hide(LoginBtn);
-        Login.Hide(SignupBtn);
+        Login.Hide(SignupCanvas);
+        Hide(loginBtnText);
+        Hide(signupBtnText);
+        Hide(playBtnText);
+        Hide(logoutBtnText);
+        Hide(chargenText);
+        Hide(quitText);
     }
 
     public void LoadSignupScene()
     {
+        Hide(loginBtnText);
+        Hide(signupBtnText);
+        Hide(playBtnText);
+        Hide(logoutBtnText);
+        Hide(chargenText);
+        Hide(quitText);
         Login.Show(SignupCanvas);
         Login.Hide(loginCanvas);
-        Login.Hide(LoginBtn);
-        Login.Hide(SignupBtn);
+       
     }
 
     public void LoadCharacterScene()
@@ -93,5 +109,9 @@ public class MainMenu : MonoBehaviour
     public void LogoutBtn()
     {
         PlayerPrefs.DeleteAll();
+    }
+    public void QuitApplication()
+    {
+        Application.Quit();
     }
 }

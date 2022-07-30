@@ -48,7 +48,7 @@ public class PlayerActions : MonoBehaviourPunCallbacks
     public PauseMenu pauseMenu;
 
     private bool tryingOn=false;
-    private bool isMuted = false;
+    private bool isMuted = true;
     private CharacterElementType tryingOnType;
     private int tryingOnTypeInitialValue;
     private CharacterCustomization characterCustomization;
@@ -83,6 +83,11 @@ public class PlayerActions : MonoBehaviourPunCallbacks
         characterType = PlayerPrefs.GetString("characterType");
 
         rtcEngine = VoiceChatManager.Instance.GetRtcEngine();
+    }
+
+    public void Start()
+    {
+        rtcEngine.MuteLocalAudioStream(true);
     }
 
 
@@ -130,16 +135,17 @@ public class PlayerActions : MonoBehaviourPunCallbacks
         }
     }
 
-    public void OnVoiceToggle()
+    public void OnVoiceToggle(InputValue value)
     {
-        isMuted = !isMuted;
-        rtcEngine.EnableLocalAudio(!isMuted);
-        if (!isMuted)
+        Debug.Log(value.isPressed);
+        if (value.isPressed)
         {
-            voiceImg.SetActive(true);
+            rtcEngine.MuteLocalAudioStream(false);
+            voiceImg.SetActive(true);             
         }
         else
         {
+            rtcEngine.MuteLocalAudioStream(true);
             voiceImg.SetActive(false);
         }
     }
