@@ -17,6 +17,7 @@ public class Login : MonoBehaviour
     [SerializeField] private string signupEndpoint = "https://ancient-retreat-18243.herokuapp.com/api/users/signup";
 
     [SerializeField] private TextMeshProUGUI alertText;
+    [SerializeField] private TextMeshProUGUI signupAlertText;
     [SerializeField] private Button loginButton;
     [SerializeField] private Button createButton;
     [SerializeField] private TMP_InputField emailInputField;
@@ -71,7 +72,7 @@ public class Login : MonoBehaviour
         Show(SignupCanvas);
         if (email.Length > 0 && password.Length > 0 && confirmPassword.Length > 0 && username.Length > 0)
         {
-            alertText.text = "Creating account...";
+            signupAlertText.text = "Creating account...";
             TryCreate(email, password, username, confirmPassword);
         }
     }
@@ -133,6 +134,7 @@ public class Login : MonoBehaviour
             form.AddField("password", password);
             form.AddField("name", username);
             form.AddField("confirmPassword", confirmPassword);
+            Debug.Log(form);
             UnityWebRequest request = UnityWebRequest.Post(signupEndpoint, form);
             var handler = request.SendWebRequest();
             while (!handler.isDone)
@@ -146,23 +148,24 @@ public class Login : MonoBehaviour
                 PlayerPrefs.SetString("token", response.token);
                 PlayerPrefs.SetString("userId", response.user._id);
                 PlayerPrefs.SetString("username", response.user.name);
+                SceneManager.LoadScene(1);
             }
             else
             {
-                alertText.text = "Error connecting to the server...";
+                signupAlertText.text = "Error connecting to the server...";
                 PlayerPrefs.DeleteKey("token");
                 PlayerPrefs.DeleteKey("userId");
                 PlayerPrefs.DeleteKey("username");
             }
             request.Dispose();
-            ActivateButtons(true);
+           ActivateButtons(true);
         }catch(Exception ex)
         {
             PlayerPrefs.DeleteKey("token");
             PlayerPrefs.DeleteKey("userId");
             PlayerPrefs.DeleteKey("username");
-            alertText.text = ex.Message;
-            ActivateButtons(true);
+            signupAlertText.text = ex.Message;
+           ActivateButtons(true);
         }
     }
 
