@@ -2,7 +2,6 @@
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 using Photon.Pun;
-using Photon.Voice.PUN;
 using System.Collections;
 using Cinemachine;
 using TMPro;

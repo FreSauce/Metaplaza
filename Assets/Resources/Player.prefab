@@ -1876,14 +1876,13 @@ GameObject:
   m_Component:
   - component: {fileID: 5175485778628499836}
   - component: {fileID: 1781414746953834014}
-  - component: {fileID: 5275144583019287810}
   m_Layer: 8
   m_Name: Speaker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5175485778628499836
 Transform:
   m_ObjectHideFlags: 0
@@ -1906,7 +1905,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1253266697109749644}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
@@ -1995,26 +1994,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &5275144583019287810
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1253266697109749644}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd7fea91fe63f4e1b884ef1e16a975c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  logLevel: 2
-  ignoreGlobalLogLevel: 0
-  playbackOnlyWhenEnabled: 0
-  playDelayMs: -1
-  playbackDelaySettings:
-    MinDelaySoft: 200
-    MaxDelaySoft: 400
-    MaxDelayHard: 1000
 --- !u!1 &1322702507964564420
 GameObject:
   m_ObjectHideFlags: 0
@@ -2317,8 +2296,8 @@ GameObject:
   - component: {fileID: 3382661410172864488}
   - component: {fileID: 5626770579014655686}
   - component: {fileID: 5626770579014655687}
-  - component: {fileID: 6546886779682081757}
   - component: {fileID: -905167908312353377}
+  - component: {fileID: 5718549817042466105}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -2572,6 +2551,7 @@ MonoBehaviour:
   menuCanvas: {fileID: 0}
   cartMenu: {fileID: 0}
   checkout: {fileID: 0}
+  adc: {fileID: 0}
   pauseMenu: {fileID: 0}
 --- !u!114 &5626770579014655686
 MonoBehaviour:
@@ -2630,25 +2610,6 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
---- !u!114 &6546886779682081757
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1422489318081175040}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 126494ae2a10a34499272ed97a6c9f5d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  logLevel: 1
-  ignoreGlobalLogLevel: 0
-  recorderInUse: {fileID: 0}
-  speakerInUse: {fileID: 0}
-  AutoCreateRecorderIfNotFound: 0
-  UsePrimaryRecorder: 1
-  SetupDebugSpeaker: 0
 --- !u!114 &-905167908312353377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2661,6 +2622,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 585ef0785bdd4e84a950eafdad4b6ff6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5718549817042466105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1422489318081175040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 514f0e233af3671489a3fea97254bdda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 10
 --- !u!1 &1455391009078387294
 GameObject:
   m_ObjectHideFlags: 0
@@ -14476,7 +14450,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2070925441746177913, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
       propertyPath: m_Lens.m_SensorSize.x
-      value: 1.9969231
+      value: 2.1828632
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2070925442191277753, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}

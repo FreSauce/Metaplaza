@@ -1,8 +1,8 @@
 using TMPro;
-using Photon.Voice.PUN;
 using UnityEngine;
 using Photon.Pun;
 using System.Threading.Tasks;
+using agora_gaming_rtc;
 using System;
 using UnityEngine.Networking;
 using UnityEngine.UI;
@@ -35,7 +35,7 @@ public class PlayerActions : MonoBehaviourPunCallbacks
 
     private float MaxUseDistance = 5f;
 
-    private PhotonVoiceNetwork _voiceNetwork;
+    private IRtcEngine rtcEngine;
 
     public Canvas menuCanvas;
 
@@ -48,10 +48,13 @@ public class PlayerActions : MonoBehaviourPunCallbacks
     public PauseMenu pauseMenu;
 
     private bool tryingOn=false;
+    private bool isMuted = false;
     private CharacterElementType tryingOnType;
     private int tryingOnTypeInitialValue;
     private CharacterCustomization characterCustomization;
     private string characterType;
+
+
 
     private string addToCartEndpoint = "https://ancient-retreat-18243.herokuapp.com/api/cart/addToCart/";
     private string fetchCartEndpoint = "https://ancient-retreat-18243.herokuapp.com/api/cart/getCart";
@@ -60,8 +63,8 @@ public class PlayerActions : MonoBehaviourPunCallbacks
     {
         Camera = GameObject.FindGameObjectWithTag("MainCamera").transform;
 
-        _voiceNetwork = PhotonVoiceNetwork.Instance;
-        _voiceNetwork.PrimaryRecorder.TransmitEnabled = false;
+        //_voiceNetwork = PhotonVoiceNetwork.Instance;
+        //_voiceNetwork.PrimaryRecorder.TransmitEnabled = false;
 
         menuCanvas = GameObject.FindGameObjectWithTag("MenuCanvas").GetComponent<Canvas>();
 
@@ -78,6 +81,8 @@ public class PlayerActions : MonoBehaviourPunCallbacks
         characterCustomization = playerMesh.GetComponent<CharacterCustomization>();
 
         characterType = PlayerPrefs.GetString("characterType");
+
+        rtcEngine = VoiceChatManager.Instance.GetRtcEngine();
     }
 
 
@@ -127,8 +132,9 @@ public class PlayerActions : MonoBehaviourPunCallbacks
 
     public void OnVoiceToggle()
     {
-        _voiceNetwork.PrimaryRecorder.TransmitEnabled = !_voiceNetwork.PrimaryRecorder.TransmitEnabled;
-        if (_voiceNetwork.PrimaryRecorder.TransmitEnabled)
+        isMuted = !isMuted;
+        rtcEngine.EnableLocalAudio(!isMuted);
+        if (!isMuted)
         {
             voiceImg.SetActive(true);
         }
