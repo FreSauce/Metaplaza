@@ -52,7 +52,7 @@ public class PlayerActions : MonoBehaviourPunCallbacks
     private CharacterElementType tryingOnType;
     private int tryingOnTypeInitialValue;
     private CharacterCustomization characterCustomization;
-    private string characterType;
+    private string characterType="Female";
 
 
 

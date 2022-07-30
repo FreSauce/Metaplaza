@@ -38,27 +38,17 @@ public class CartMenu : MonoBehaviour
 
     public void setItems(ICartItem[] items)
     {
-        foreach(ICartItem item in items)
+        this.clearAllItems();
+        foreach (ICartItem item in items)
         {
             Debug.Log(item.ToString());
-            bool flag = true;
-            foreach(ICartItem it in cartItems)
-            {
-                if (it._id == item._id )
-                {
-                    flag = false;
-                    break;
-                }
-            }
-            if (flag)
-            {
-                GameObject temp = Instantiate(cartItemPrefab);
-                temp.transform.SetParent(cartMenuContent.transform);
-                temp.transform.localScale = Vector3.one;
-                CartItem ct = temp.GetComponent<CartItem>();
-                ct.setItem(item);
-                cartItems.Add(item);
-            }
+
+            GameObject temp = Instantiate(cartItemPrefab);
+            temp.transform.SetParent(cartMenuContent.transform);
+            temp.transform.localScale = Vector3.one;
+            CartItem ct = temp.GetComponent<CartItem>();
+            ct.setItem(item);
+            cartItems.Add(item);
         }
 
     }
