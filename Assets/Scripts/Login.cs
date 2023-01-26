@@ -13,8 +13,8 @@ public class Login : MonoBehaviour
     //private const string PASSWORD_REGEX = "(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,24})";
     public GameObject loginCanvas;
     public GameObject SignupCanvas;
-    [SerializeField] private string loginEndpoint = "https://ancient-retreat-18243.herokuapp.com/api/users/login";
-    [SerializeField] private string signupEndpoint = "https://ancient-retreat-18243.herokuapp.com/api/users/signup";
+    [SerializeField] private string loginEndpoint = "https://grid-metaphoria-server.onrender.com/api/users/login";
+    [SerializeField] private string signupEndpoint = "https://grid-metaphoria-server.onrender.com/api/users/signup";
 
     [SerializeField] private TextMeshProUGUI alertText;
     [SerializeField] private TextMeshProUGUI signupAlertText;

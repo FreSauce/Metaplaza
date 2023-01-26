@@ -9,8 +9,8 @@ using System;
 
 public class CharacterRequests : MonoBehaviour
 {
-    [SerializeField] private static string saveEndpoint= "https://ancient-retreat-18243.herokuapp.com/api/users/sendCharacterData";
-    [SerializeField] private static string loadEndpoint = "https://ancient-retreat-18243.herokuapp.com/api/users/getUserData/";
+    [SerializeField] private static string saveEndpoint= "https://grid-metaphoria-server.onrender.com/api/users/sendCharacterData";
+    [SerializeField] private static string loadEndpoint = "https://grid-metaphoria-server.onrender.com/api/users/getUserData/";
     AdvancedPeopleSystem.CharacterCustomization character;
 
     private void Start()

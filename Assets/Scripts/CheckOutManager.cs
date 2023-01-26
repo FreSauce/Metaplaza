@@ -9,7 +9,7 @@ public class CheckoutManager : MonoBehaviour
 {
     [SerializeField]
     public string flag;
-    private string checkoutEndPoint = "https://ancient-retreat-18243.herokuapp.com/api/cart/cart_checkout/";
+    private string checkoutEndPoint = "https://grid-metaphoria-server.onrender.com/api/cart/cart_checkout/";
 
     public void checkout()
     {

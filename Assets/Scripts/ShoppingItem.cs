@@ -17,7 +17,7 @@ public class ShoppingItem : MonoBehaviour
     
     private string link;
 
-    private string fetchProductEndpoint = "https://ancient-retreat-18243.herokuapp.com/api/products/getProduct/";
+    private string fetchProductEndpoint = "https://grid-metaphoria-server.onrender.com/api/products/getProduct/";
 
     public void Start()
     {

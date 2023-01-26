@@ -2,7 +2,6 @@ using TMPro;
 using UnityEngine;
 using Photon.Pun;
 using System.Threading.Tasks;
-using agora_gaming_rtc;
 using System;
 using UnityEngine.Networking;
 using UnityEngine.UI;
@@ -35,7 +34,7 @@ public class PlayerActions : MonoBehaviourPunCallbacks
 
     private float MaxUseDistance = 5f;
 
-    private IRtcEngine rtcEngine;
+    // private IRtcEngine rtcEngine;
 
     public Canvas menuCanvas;
 
@@ -56,8 +55,8 @@ public class PlayerActions : MonoBehaviourPunCallbacks
 
 
 
-    private string addToCartEndpoint = "https://ancient-retreat-18243.herokuapp.com/api/cart/addToCart/";
-    private string fetchCartEndpoint = "https://ancient-retreat-18243.herokuapp.com/api/cart/getCart";
+    private string addToCartEndpoint = "https://grid-metaphoria-server.onrender.com/api/cart/addToCart/";
+    private string fetchCartEndpoint = "https://grid-metaphoria-server.onrender.com/api/cart/getCart";
 
     private void Awake()
     {
@@ -82,12 +81,12 @@ public class PlayerActions : MonoBehaviourPunCallbacks
 
         characterType = PlayerPrefs.GetString("characterType");
 
-        rtcEngine = VoiceChatManager.Instance.GetRtcEngine();
+        // rtcEngine = VoiceChatManager.Instance.GetRtcEngine();
     }
 
     public void Start()
     {
-        rtcEngine.MuteLocalAudioStream(true);
+        // rtcEngine.MuteLocalAudioStream(true);
     }
 
 
@@ -137,17 +136,17 @@ public class PlayerActions : MonoBehaviourPunCallbacks
 
     public void OnVoiceToggle(InputValue value)
     {
-        Debug.Log(value.isPressed);
-        if (value.isPressed)
-        {
-            rtcEngine.MuteLocalAudioStream(false);
-            voiceImg.SetActive(true);             
-        }
-        else
-        {
-            rtcEngine.MuteLocalAudioStream(true);
-            voiceImg.SetActive(false);
-        }
+        //Debug.Log(value.isPressed);
+        //if (value.isPressed)
+        //{
+        //    rtcEngine.MuteLocalAudioStream(false);
+        //    voiceImg.SetActive(true);             
+        //}
+        //else
+        //{
+        //    rtcEngine.MuteLocalAudioStream(true);
+        //    voiceImg.SetActive(false);
+        //}
     }
 
     public void OnTryOn(InputValue value)

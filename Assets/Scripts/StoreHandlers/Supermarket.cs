@@ -5,7 +5,7 @@ using UnityEngine;
 public class Supermarket : MonoBehaviour
 {
 
-    public string loadEndpoint = "https://ancient-retreat-18243.herokuapp.com/api/products/getProduct/";
+    public string loadEndpoint = "https://grid-metaphoria-server.onrender.com/api/products/getProduct/";
 
     
 }
